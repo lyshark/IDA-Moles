@@ -52,7 +52,7 @@ Download progress: 100.00%
 
 ## 接口规范
 
-该组件基于 IDA 9.1 标准 SDK 开发工具包进行研发，在缺乏有效参考文档与技术支持的前提下，作者通过理解逆向分析原理与技术攻坚，成功实现了 50+ 余项核心功能，并按照功能属性系统性归档为六大模块：
+该组件基于 IDA 9.1 标准 C++ SDK 开发工具包进行研发，在缺乏有效参考文档与技术支持的前提下，业余时间花费1个月，作者通过理解IDA逆向分析原理与技术攻坚，成功实现了 50 余项核心功能，并按照功能属性系统性归档为六大模块：
 
  - Info（信息解析）
  - Function（函数分析）
@@ -1550,6 +1550,402 @@ if __name__ == '__main__':
 
 内存操作模块提供内存数据读取、结构体解析、字符串提取、内存搜索与交叉引用查询等能力，支持按字节/字/双字精准读取数据，并追踪代码与数据间的引用关系，实现对程序运行时状态的完整观测。
 
+#### get_entry_points
+
+调用服务端 Memory 类的 GetEntryPoints 接口，获取程序的所有入口点地址信息，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.get_entry_points())
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "entry_points": [
+      {
+        "ordinal": 4199684,
+        "address": 4199684,
+        "address_hex": "0x401504",
+        "name": "start",
+        "forwarder": "",
+        "index": 0
+      }
+    ],
+    "total_count": 1
+  },
+  "timestamp": 35475343
+}
+```
+
+#### get_defined_struct
+
+调用服务端 Memory 类的 GetDefinedStruct 接口，获取程序中已定义的所有结构体信息，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.get_defined_struct())
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "defined_types": [
+      {
+        "ordinal": 1,
+        "get_success": true,
+        "name": "_GUID",
+        "size_bytes": 16,
+        "size_hex": "0x10",
+        "is_union": false,
+        "is_struct": true,
+        "is_enum": false,
+        "is_typedef": false,
+        "is_ptr": false,
+        "is_array": false,
+        "type_string": "_GUID"
+      },
+      {
+        "ordinal": 2,
+        "get_success": true,
+        "name": "GUID",
+        "size_bytes": 16,
+        "size_hex": "0x10",
+        "is_union": false,
+        "is_struct": true,
+        "is_enum": false,
+        "is_typedef": true,
+        "is_ptr": false,
+        "is_array": false,
+        "type_string": "GUID"
+      },
+      {
+        "ordinal": 3,
+        "get_success": true,
+        "name": "_EH4_SCOPETABLE_RECORD",
+        "size_bytes": 12,
+        "size_hex": "0xC",
+        "is_union": false,
+        "is_struct": true,
+        "is_enum": false,
+        "is_typedef": false,
+        "is_ptr": false,
+        "is_array": false,
+        "type_string": "_EH4_SCOPETABLE_RECORD"
+      }
+    ],
+    "total_count": 79
+  },
+  "timestamp": 35726906
+}
+```
+
+#### get_memory_byte
+
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 GetMemoryByte 接口，获取指定地址的 1 字节内存数据，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.get_memory_byte("0x401000"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "address": 4198400,
+    "address_hex": "0x401000",
+    "byte_value": 85,
+    "byte_hex": "55"
+  },
+  "timestamp": 35917234
+}
+```
+
+#### get_memory_word
+
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 GetMemoryWord 接口，获取指定地址的 2 字节（Word）内存数据，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.get_memory_word("0x401000"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "address": 4198400,
+    "address_hex": "0x401000",
+    "word_value": 35669,
+    "word_hex": "8B55"
+  },
+  "timestamp": 36064421
+}
+```
+
+#### get_memory_dword
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.get_memory_dword("0x401000"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "address": 4198400,
+    "address_hex": "0x401000",
+    "dword_value": 2213317461,
+    "dword_hex": "83EC8B55"
+  },
+  "timestamp": 36239218
+}
+```
+
+#### get_memory_qword
+
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 GetMemoryQword 接口，获取指定地址的 8 字节（Qword）内存数据，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.get_memory_qword("0x401000"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "address": 4198400,
+    "address_hex": "0x401000",
+    "qword_value": 10040244221420278000,
+    "qword_hex": "-74A9E3137C1374AB"
+  },
+  "timestamp": 36541093
+}
+```
+
+#### get_memory_bytes
+
+接收地址和长度参数，验证地址格式并校验长度为正数后，调用服务端 Memory 类的 GetMemoryBytes 接口，获取指定地址开始的指定长度内存数据，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.get_memory_bytes("0x401000","5"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "address": 4198400,
+    "address_hex": "0x401000",
+    "requested_length": 5,
+    "actual_length": 5,
+    "bytes": [
+      85,
+      139,
+      236,
+      131,
+      236
+    ],
+    "bytes_hex": [
+      "55",
+      "8b",
+      "ec",
+      "83",
+      "ec"
+    ]
+  },
+  "timestamp": 36614296
+}
+```
+
+#### get_string_info
+
+调用服务端 Memory 类的 GetStringInfo 接口，获取程序中所有字符串相关信息，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.get_string_info())
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "strings": [
+      {
+        "index": 0,
+        "start_address": 4203052,
+        "start_address_hex": "0x40222C",
+        "end_address": 4203143,
+        "end_address_hex": "0x402287",
+        "size": 91
+      },
+      {
+        "index": 1,
+        "start_address": 4203176,
+        "start_address_hex": "0x4022A8",
+        "end_address": 4203185,
+        "end_address_hex": "0x4022B1",
+        "size": 9
+      },
+      {
+        "index": 2,
+        "start_address": 4203196,
+        "start_address_hex": "0x4022BC",
+        "end_address": 4203205,
+        "end_address_hex": "0x4022C5",
+        "size": 9
+      }
+    ],
+    "total_count": 94
+  },
+  "timestamp": 36942859
+}
+```
+
+#### get_memory_search
+
+接收起始地址、结束地址和搜索参数，验证地址格式并校验搜索参数非空后，调用服务端 Memory 类的 MemorySearch 接口，在指定地址范围内搜索指定内容，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.get_memory_search("0x401000","0x402000","688033"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "found_address": 4198431,
+    "found_address_hex": "0x40101F",
+    "searched_pattern": "688033",
+    "search_start": 4198400,
+    "search_start_hex": "0x401000",
+    "search_end": 4202496,
+    "search_end_hex": "0x402000"
+  },
+  "timestamp": 37278640
+}
+```
+
+#### get_type_by_name
+
+接收类型名称参数，校验非空后，调用服务端 Memory 类的 GetTypeByName 接口，根据名称获取对应的类型定义信息，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.get_type_by_name("_GUID"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "type_info": {
+      "original_name": "_GUID",
+      "size_bytes": 16
+    }
+  },
+  "timestamp": 37370109
+}
+```
+
 #### 
 
 ```python
@@ -1598,89 +1994,6 @@ if __name__ == '__main__':
 
 ```
 
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
 
 ### 通用辅助
 
@@ -1817,6 +2130,51 @@ if __name__ == '__main__':
 ```json
 
 ```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+
+
+
+
+
+
+
+
 
 
 
