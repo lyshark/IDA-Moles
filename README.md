@@ -69,7 +69,7 @@ Download progress: 100.00%
 
 #### get_basic_info
 
-调用服务端 Info 类的 GetBasicInfo 接口，获取程序的基础信息，请求前会检查服务端可用性。
+调用服务端 Info 类的 GetBasicInfo 接口，获取程序的基础信息。
 
 ```python
 from IDAMoles import *
@@ -247,7 +247,7 @@ if __name__ == '__main__':
 
 #### get_image_info
 
-调用服务端 Info 类的 GetImageInfo 接口，获取程序的镜像（Image）相关信息，请求前会检查服务端可用性。
+调用服务端 Info 类的 GetImageInfo 接口，获取程序的镜像（Image）相关信息。
 
 ```python
 from IDAMoles import *
@@ -284,7 +284,7 @@ if __name__ == '__main__':
 
 #### get_functions
 
-调用服务端 Function 类的 GetFunction 接口，获取程序中所有函数的列表信息，请求前会检查服务端可用性。
+调用服务端 Function 类的 GetFunction 接口，获取程序中所有函数的列表信息。
 
 ```python
 from IDAMoles import *
@@ -379,7 +379,7 @@ if __name__ == '__main__':
 
 #### get_function_info
 
-接收函数起始地址参数，验证地址格式后，调用服务端 Function 类的 GetFunctionInfo 接口，获取指定地址函数的详细信息，请求前会检查服务端可用性。
+接收函数起始地址参数，验证地址格式后，调用服务端 Function 类的 GetFunctionInfo 接口，获取指定地址函数的详细信息。
 
 ```python
 from IDAMoles import *
@@ -432,7 +432,7 @@ if __name__ == '__main__':
 
 #### get_import_functions
 
-调用服务端 Function 类的 GetImportFunctions 接口，获取程序中导入函数的列表信息，请求前会检查服务端可用性。
+调用服务端 Function 类的 GetImportFunctions 接口，获取程序中导入函数的列表信息。
 
 ```python
 from IDAMoles import *
@@ -485,7 +485,7 @@ if __name__ == '__main__':
 
 #### get_function_count
 
-调用服务端 Function 类的 GetFunctionCount 接口，获取程序中函数的总数，请求前会检查服务端可用性。
+调用服务端 Function 类的 GetFunctionCount 接口，获取程序中函数的总数。
 
 ```python
 from IDAMoles import *
@@ -513,7 +513,7 @@ if __name__ == '__main__':
 
 #### get_function_by_addr
 
-接收函数起始地址参数，验证地址格式后，调用服务端 Function 类的 GetFunctionByAddr 接口，根据地址获取对应函数信息，请求前会检查服务端可用性。
+接收函数起始地址参数，验证地址格式后，调用服务端 Function 类的 GetFunctionByAddr 接口，根据地址获取对应函数信息。
 
 ```python
 from IDAMoles import *
@@ -572,7 +572,7 @@ if __name__ == '__main__':
 
 #### get_function_by_name
 
-接收函数名称参数，校验非空后，调用服务端 Function 类的 GetFunctionByName 接口，根据名称获取对应函数信息，请求前会检查服务端可用性。
+接收函数名称参数，校验非空后，调用服务端 Function 类的 GetFunctionByName 接口，根据名称获取对应函数信息。
 
 ```python
 from IDAMoles import *
@@ -632,7 +632,7 @@ if __name__ == '__main__':
 
 #### find_function_by_name
 
-接收搜索关键词参数，校验非空后，调用服务端 Function 类的 FindFunctionByName 接口，模糊搜索包含关键词的函数信息，请求前会检查服务端可用性。
+接收搜索关键词参数，校验非空后，调用服务端 Function 类的 FindFunctionByName 接口，模糊搜索包含关键词的函数信息。
 
 ```python
 from IDAMoles import *
@@ -732,7 +732,7 @@ if __name__ == '__main__':
 
 #### get_segments
 
-调用服务端 Segment 类的 GetSegment 接口，获取程序中所有段（Segment）的列表信息，请求前会检查服务端可用性。
+调用服务端 Segment 类的 GetSegment 接口，获取程序中所有段（Segment）的列表信息。
 
 ```python
 from IDAMoles import *
@@ -833,7 +833,7 @@ if __name__ == '__main__':
 
 #### get_segment_count
 
-调用服务端 Segment 类的 GetSegmentCount 接口，获取程序中段的总数，请求前会检查服务端可用性。
+调用服务端 Segment 类的 GetSegmentCount 接口，获取程序中段的总数。
 
 ```python
 from IDAMoles import *
@@ -862,7 +862,7 @@ if __name__ == '__main__':
 
 #### get_segment_from_addr
 
-接收地址参数，验证地址格式后，调用服务端 Segment 类的 GetSegmentFromAddr 接口，获取指定地址所属段的信息，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Segment 类的 GetSegmentFromAddr 接口，获取指定地址所属段的信息。
 
 ```python
 from IDAMoles import *
@@ -903,7 +903,7 @@ if __name__ == '__main__':
 
 #### disassembly_function
 
-接收地址参数，验证地址格式后，调用服务端 Reverse 类的 DisassembleFunction 接口，对指定地址的函数进行反汇编，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Reverse 类的 DisassembleFunction 接口，对指定地址的函数进行反汇编。
 
 ```python
 from IDAMoles import *
@@ -961,7 +961,7 @@ if __name__ == '__main__':
 
 #### disassembly_count
 
-接收地址和行数参数，验证地址格式并校验行数在 1-1024 范围内后，调用服务端 Reverse 类的 DisassemblyCount 接口，反汇编指定地址开始的指定行数指令，请求前会检查服务端可用性。
+接收地址和行数参数，验证地址格式并校验行数在 1-1024 范围内后，调用服务端 Reverse 类的 DisassemblyCount 接口，反汇编指定地址开始的指定行数指令。
 
 ```python
 from IDAMoles import *
@@ -1015,7 +1015,7 @@ if __name__ == '__main__':
 
 #### disassembly_range
 
-接收起始和结束地址参数，验证地址格式后，调用服务端 Reverse 类的 DisassemblyRange 接口，反汇编指定地址范围内的指令，请求前会检查服务端可用性。
+接收起始和结束地址参数，验证地址格式后，调用服务端 Reverse 类的 DisassemblyRange 接口，反汇编指定地址范围内的指令。
 
 ```python
 from IDAMoles import *
@@ -1125,7 +1125,7 @@ if __name__ == '__main__':
 
 #### decompile_checked
 
-接收地址参数，验证地址格式后，调用服务端 Reverse 类的 DecompileChecked 接口，对指定地址进行反编译校验，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Reverse 类的 DecompileChecked 接口，对指定地址进行反编译校验。
 
 ```python
 from IDAMoles import *
@@ -1155,7 +1155,7 @@ if __name__ == '__main__':
 
 #### decompile_micro_code
 
-接收地址参数，验证地址格式后，调用服务端 Reverse 类的 GetMicroCode 接口，获取指定地址的微代码反编译结果，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Reverse 类的 GetMicroCode 接口，获取指定地址的微代码反编译结果。
 
 ```python
 from IDAMoles import *
@@ -1187,7 +1187,7 @@ if __name__ == '__main__':
 
 #### decompile_from_addr
 
-接收地址参数，验证地址格式后，调用服务端 Reverse 类的 DecompileFunctionFromAddr 接口，根据地址反编译对应函数，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Reverse 类的 DecompileFunctionFromAddr 接口，根据地址反编译对应函数。
 
 ```python
 from IDAMoles import *
@@ -1220,7 +1220,7 @@ if __name__ == '__main__':
 
 #### decompile_from_name
 
-接收函数名称参数，校验非空后，调用服务端 Reverse 类的 DecompileFunctionFromName 接口，根据名称反编译对应函数，请求前会检查服务端可用性。
+接收函数名称参数，校验非空后，调用服务端 Reverse 类的 DecompileFunctionFromName 接口，根据名称反编译对应函数。
 
 ```python
 from IDAMoles import *
@@ -1253,7 +1253,7 @@ if __name__ == '__main__':
 
 #### decompile_line_to_address
 
-接收地址和行号参数，验证地址格式并校验行号非空后，调用服务端 Reverse 类的 DecompileLineToAddress 接口，将反编译代码的行号映射到对应内存地址，请求前会检查服务端可用性。
+接收地址和行号参数，验证地址格式并校验行号非空后，调用服务端 Reverse 类的 DecompileLineToAddress 接口，将反编译代码的行号映射到对应内存地址。
 
 ```python
 from IDAMoles import *
@@ -1285,7 +1285,7 @@ if __name__ == '__main__':
 
 #### decompile_address_to_line
 
-接收地址参数，验证地址格式后，调用服务端 Reverse 类的 DecompileAddressToLine 接口，将指定地址映射到反编译代码的行号，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Reverse 类的 DecompileAddressToLine 接口，将指定地址映射到反编译代码的行号。
 
 ```python
 from IDAMoles import *
@@ -1315,7 +1315,7 @@ if __name__ == '__main__':
 
 #### get_select_decompile
 
-调用服务端 Reverse 类的 GetSelectDecompile 接口，获取当前选中区域的反编译代码，请求前会检查服务端可用性。
+调用服务端 Reverse 类的 GetSelectDecompile 接口，获取当前选中区域的反编译代码。
 
 ```python
 from IDAMoles import *
@@ -1382,7 +1382,7 @@ if __name__ == '__main__':
 
 #### get_select_disassembly
 
-调用服务端 Reverse 类的 GetSelectDisassembly 接口，获取当前选中区域的反汇编指令，请求前会检查服务端可用性。
+调用服务端 Reverse 类的 GetSelectDisassembly 接口，获取当前选中区域的反汇编指令。
 
 ```python
 from IDAMoles import *
@@ -1449,7 +1449,7 @@ if __name__ == '__main__':
 
 #### get_select_hex
 
-调用服务端 Reverse 类的 GetSelectHex 接口，获取当前选中区域的十六进制数据，请求前会检查服务端可用性。
+调用服务端 Reverse 类的 GetSelectHex 接口，获取当前选中区域的十六进制数据。
 
 ```python
 from IDAMoles import *
@@ -1552,7 +1552,7 @@ if __name__ == '__main__':
 
 #### get_entry_points
 
-调用服务端 Memory 类的 GetEntryPoints 接口，获取程序的所有入口点地址信息，请求前会检查服务端可用性。
+调用服务端 Memory 类的 GetEntryPoints 接口，获取程序的所有入口点地址信息。
 
 ```python
 from IDAMoles import *
@@ -1590,7 +1590,7 @@ if __name__ == '__main__':
 
 #### get_defined_struct
 
-调用服务端 Memory 类的 GetDefinedStruct 接口，获取程序中已定义的所有结构体信息，请求前会检查服务端可用性。
+调用服务端 Memory 类的 GetDefinedStruct 接口，获取程序中已定义的所有结构体信息。
 
 ```python
 from IDAMoles import *
@@ -1662,7 +1662,7 @@ if __name__ == '__main__':
 
 #### get_memory_byte
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 GetMemoryByte 接口，获取指定地址的 1 字节内存数据，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 GetMemoryByte 接口，获取指定地址的 1 字节内存数据。
 
 ```python
 from IDAMoles import *
@@ -1693,7 +1693,7 @@ if __name__ == '__main__':
 
 #### get_memory_word
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 GetMemoryWord 接口，获取指定地址的 2 字节（Word）内存数据，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 GetMemoryWord 接口，获取指定地址的 2 字节（Word）内存数据。
 
 ```python
 from IDAMoles import *
@@ -1753,7 +1753,7 @@ if __name__ == '__main__':
 
 #### get_memory_qword
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 GetMemoryQword 接口，获取指定地址的 8 字节（Qword）内存数据，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 GetMemoryQword 接口，获取指定地址的 8 字节（Qword）内存数据。
 
 ```python
 from IDAMoles import *
@@ -1784,7 +1784,7 @@ if __name__ == '__main__':
 
 #### get_memory_bytes
 
-接收地址和长度参数，验证地址格式并校验长度为正数后，调用服务端 Memory 类的 GetMemoryBytes 接口，获取指定地址开始的指定长度内存数据，请求前会检查服务端可用性。
+接收地址和长度参数，验证地址格式并校验长度为正数后，调用服务端 Memory 类的 GetMemoryBytes 接口，获取指定地址开始的指定长度内存数据。
 
 ```python
 from IDAMoles import *
@@ -1829,7 +1829,7 @@ if __name__ == '__main__':
 
 #### get_string_info
 
-调用服务端 Memory 类的 GetStringInfo 接口，获取程序中所有字符串相关信息，请求前会检查服务端可用性。
+调用服务端 Memory 类的 GetStringInfo 接口，获取程序中所有字符串相关信息。
 
 ```python
 from IDAMoles import *
@@ -1883,7 +1883,7 @@ if __name__ == '__main__':
 
 #### get_memory_search
 
-接收起始地址、结束地址和搜索参数，验证地址格式并校验搜索参数非空后，调用服务端 Memory 类的 MemorySearch 接口，在指定地址范围内搜索指定内容，请求前会检查服务端可用性。
+接收起始地址、结束地址和搜索参数，验证地址格式并校验搜索参数非空后，调用服务端 Memory 类的 MemorySearch 接口，在指定地址范围内搜索指定内容。
 
 ```python
 from IDAMoles import *
@@ -1917,7 +1917,7 @@ if __name__ == '__main__':
 
 #### get_type_by_name
 
-接收类型名称参数，校验非空后，调用服务端 Memory 类的 GetTypeByName 接口，根据名称获取对应的类型定义信息，请求前会检查服务端可用性。
+接收类型名称参数，校验非空后，调用服务端 Memory 类的 GetTypeByName 接口，根据名称获取对应的类型定义信息。
 
 ```python
 from IDAMoles import *
@@ -1948,7 +1948,7 @@ if __name__ == '__main__':
 
 #### xref_code_first_to
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefCodeFirstTo 接口，获取指向该地址的第一条代码交叉引用，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefCodeFirstTo 接口，获取指向该地址的第一条代码交叉引用。
 
 ```python
 from IDAMoles import *
@@ -2035,7 +2035,7 @@ if __name__ == '__main__':
 
 #### xref_code_first_from
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefCodeFirstFrom 接口，获取从该地址出发的第一条代码交叉引用，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefCodeFirstFrom 接口，获取从该地址出发的第一条代码交叉引用。
 
 ```python
 from IDAMoles import *
@@ -2124,7 +2124,7 @@ if __name__ == '__main__':
 
 #### xref_data_first_to
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefDataFirstTo 接口，获取指向该地址的第一条数据交叉引用，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefDataFirstTo 接口，获取指向该地址的第一条数据交叉引用。
 
 ```python
 from IDAMoles import *
@@ -2163,7 +2163,7 @@ if __name__ == '__main__':
 
 #### xref_data_first_from
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefDataFirstFrom 接口，获取从该地址出发的第一条数据交叉引用，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefDataFirstFrom 接口，获取从该地址出发的第一条数据交叉引用。
 
 ```python
 from IDAMoles import *
@@ -2229,7 +2229,7 @@ if __name__ == '__main__':
 
 #### xref_code_to_array
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefCodeFromArray 接口，获取所有从该地址出发的代码交叉引用列表，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefCodeFromArray 接口，获取所有从该地址出发的代码交叉引用列表。
 
 ```python
 from IDAMoles import *
@@ -2264,7 +2264,7 @@ if __name__ == '__main__':
 
 #### xref_code_from_array
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefCodeFromArray 接口，获取所有从该地址出发的代码交叉引用列表，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefCodeFromArray 接口，获取所有从该地址出发的代码交叉引用列表。
 
 ```python
 from IDAMoles import *
@@ -2293,7 +2293,7 @@ if __name__ == '__main__':
 
 #### xref_data_to_array
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefDataToArray 接口，获取所有指向该地址的交叉引用列表，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefDataToArray 接口，获取所有指向该地址的交叉引用列表。
 
 ```python
 from IDAMoles import *
@@ -2328,7 +2328,7 @@ if __name__ == '__main__':
 
 #### xref_data_from_array
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefDataFromArray 接口，获取所有从该地址出发的数据交叉引用列表，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefDataFromArray 接口，获取所有从该地址出发的数据交叉引用列表。
 
 ```python
 from IDAMoles import *
@@ -2357,7 +2357,7 @@ if __name__ == '__main__':
 
 #### xref_get_list_array
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefGetListArray 接口，获取该地址相关的所有交叉引用列表，请求前会检查服务端可用性。
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefGetListArray 接口，获取该地址相关的所有交叉引用列表。
 
 ```python
 from IDAMoles import *
@@ -2395,231 +2395,413 @@ if __name__ == '__main__':
 
 通用辅助模块提供注释编辑、符号重命名、变量修改、结构成员管理等便捷操作，用于优化 IDA 展示效果、提升分析效率，让逆向成果更易沉淀、共享与二次利用，是工程化分析必不可少的辅助能力。
 
-#### 
+#### set_assembly_comment
+
+接收地址和注释参数，验证地址格式并校验注释非空后，调用服务端 Other 类的 SetAssemblyComment 接口，为指定地址的汇编指令添加注释。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Other(config)
+
+    print(info_page.set_assembly_commnet("0x401000","new comm"))
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "set_success": true,
+    "target_address_dec": 4198400,
+    "target_address_hex": "0x401000",
+    "comment_content": "new comm",
+    "comment_type": "repeatable_comment"
+  },
+  "timestamp": 38946781
+}
 ```
 
-#### 
+#### set_function_comment
+
+接收地址和注释参数，验证地址格式并校验注释非空后，调用服务端 Other 类的 SetFunctionComment 接口，为指定地址的函数添加注释。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Other(config)
+
+    print(info_page.set_function_comment("0x401000","new comm"))
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "requested_address": 4198400,
+    "requested_address_hex": "0x401000",
+    "comment_content": "new comm",
+    "is_global": true,
+    "flag": "true"
+  },
+  "timestamp": 39185687
+}
 ```
 
-#### 
+#### get_function_name
+
+接收地址参数，验证地址格式后，调用服务端 Other 类的 GetFunctionName 接口，获取指定地址所属函数的名称。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Other(config)
+
+    print(info_page.get_function_name("0x401000"))
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "requested_address": 4198400,
+    "requested_address_hex": "0x401000",
+    "flag": "true",
+    "function_name": "_WinMain@16",
+    "actual_function_start_address": 4198400,
+    "actual_function_start_address_hex": "0x401000"
+  },
+  "timestamp": 39246453
+}
 ```
 
-#### 
+#### set_function_name
+
+接收地址和函数名称参数，验证地址格式并校验名称非空后，调用服务端 Other 类的 SetFunctionName 接口，修改指定地址所属函数的名称。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Other(config)
+
+    print(info_page.set_function_name("0x401000","MyFunc"))
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "requested_address": 4198400,
+    "requested_address_hex": "0x401000",
+    "new_function_name": "MyFunc",
+    "flag": "true",
+    "actual_function_start_address": 4198400,
+    "actual_function_start_address_hex": "0x401000",
+    "final_function_name": "MyFunc"
+  },
+  "timestamp": 39369609
+}
 ```
 
-#### 
+#### switch_pseudocode_to
+
+接收地址参数，验证地址格式后，调用服务端 Other 类的 SwitchPseudoCodeTo 接口，切换伪代码窗口到指定地址位置并反编译。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Other(config)
+
+    print(info_page.switch_pseudocode_to("0x401000"))
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "message": "Successfully switched to pseudocode",
+    "function_address": "0x401000"
+  },
+  "timestamp": 39529218
+}
 ```
 
-#### 
+#### get_function_var_name
+
+接收地址参数，验证地址格式后，调用服务端 Other 类的 GetFunctionVarName 接口，获取指定地址所属函数的变量名称。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Other(config)
+
+    info_page.switch_pseudocode_to("0x401000")
+    print(info_page.get_function_var_name("0x401000"))
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "variables": [
+      {
+        "name": "hInstance",
+        "location": "stack offset: 0x5C",
+        "width_bytes": 4,
+        "type": "HINSTANCE",
+        "is_user_defined": false,
+        "index": 0
+      },
+      {
+        "name": "hPrevInstance",
+        "location": "stack offset: 0x60",
+        "width_bytes": 4,
+        "type": "HINSTANCE",
+        "is_user_defined": false,
+        "index": 1
+      },
+      {
+        "name": "lpCmdLine",
+        "location": "stack offset: 0x64",
+        "width_bytes": 4,
+        "type": "LPSTR",
+        "is_user_defined": false,
+        "index": 2
+      },
+      {
+        "name": "nShowCmd",
+        "location": "stack offset: 0x68",
+        "width_bytes": 4,
+        "type": "int",
+        "is_user_defined": false,
+        "index": 3
+      },
+      {
+        "name": "Window",
+        "location": "register: r8",
+        "width_bytes": 4,
+        "type": "HWND",
+        "is_user_defined": false,
+        "index": 4
+      },
+      {
+        "name": "v5",
+        "location": "register: zf",
+        "width_bytes": 4,
+        "type": "HWND",
+        "is_user_defined": false,
+        "index": 5
+      },
+      {
+        "name": "Msg",
+        "location": "stack offset: 0x38",
+        "width_bytes": 28,
+        "type": "tagMSG",
+        "is_user_defined": true,
+        "index": 7
+      },
+      {
+        "name": "hInstancea",
+        "location": "stack offset: 0x5C",
+        "width_bytes": 4,
+        "type": "HACCEL",
+        "is_user_defined": true,
+        "index": 8
+      }
+    ],
+    "function_address": "0x401000",
+    "found_variables_count": 8
+  },
+  "timestamp": 39635265
+}
 ```
 
-#### 
+#### set_function_var_name
+
+接收地址、UID 和变量名称参数，验证地址格式并校验 UID 和变量名称非空后，调用服务端 Other 类的 SetFunctionVarName 接口，修改指定地址函数中指定 UID 的变量名称。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Other(config)
+
+    info_page.switch_pseudocode_to("0x401000")
+    print(info_page.set_function_var_name("0x401000","4","new_var"))
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "function_address": "0x401000",
+    "var_index": 4,
+    "new_name": "new_var",
+    "message": "Local variable renamed successfully"
+  },
+  "timestamp": 39949484
+}
 ```
 
-#### 
+#### get_struct_member_name
+
+接收结构体名称和偏移量参数，校验结构体名称非空且偏移量为非负整数后，调用服务端 Other 类的 GetStructMemberName 接口，获取指定结构体中指定偏移量的成员名称。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Other(config)
+
+    print(info_page.get_struct_member_name("_GUID", 0))
+    print(info_page.get_struct_member_name("_GUID", 1))
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "member_info": {
+      "struct_name": "_GUID",
+      "member_name": "Data1",
+      "offset_bits": 0,
+      "offset_bytes": 0,
+      "size_bits": 32,
+      "size_bytes": 4,
+      "type": "unsigned int",
+      "effective_alignment_bytes": 1,
+      "field_alignment_shift": 255,
+      "flags": {
+        "is_bitfield": false,
+        "is_zero_length_bitfield": false,
+        "is_unaligned": false,
+        "is_baseclass_member": false,
+        "is_virtual_baseclass_member": false,
+        "is_vftable_member": false,
+        "is_method_member": false,
+        "is_gap": false,
+        "is_anonymous": false
+      }
+    }
+  },
+  "timestamp": 40099000
+}
 ```
 
-#### 
+#### set_struct_member_name
+
+接收结构体名称、偏移量和新成员名称参数，校验结构体名称非空、偏移量为非负整数且新名称非空后，调用服务端 Other 类的 SetStructMemberName 接口，修改指定结构体中指定偏移量的成员名称。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Other(config)
+
+    print(info_page.set_struct_member_name("_GUID", 0,"new_data"))
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "rename_result": {
+      "struct_name": "_GUID",
+      "offset_bytes": 0,
+      "old_member_name": "Data1",
+      "new_member_name": "new_data",
+      "status": "Member renamed successfully"
+    }
+  },
+  "timestamp": 40172734
+}
 ```
 
-#### 
+#### get_current_select
+
+调用服务端 Other 类的 GetCurrentSelect 接口，获取当前选中区域的相关信息。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Other(config)
+
+    print(info_page.get_current_select())
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "screen_ea": 4198438,
+    "screen_ea_hex": "0x401026",
+    "selection_start_ea": 4198400,
+    "selection_start_ea_hex": "0x401000",
+    "selection_end_ea": 4198439,
+    "selection_end_ea_hex": "0x401027",
+    "widget_type_code": 27,
+    "widget_title": "IDA View-A",
+    "has_valid_selection": true
+  },
+  "timestamp": 40213890
+}
 ```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## FastMCP + CherryStudio
 
