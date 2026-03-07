@@ -1946,54 +1946,450 @@ if __name__ == '__main__':
 }
 ```
 
-#### 
+#### xref_code_first_to
+
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefCodeFirstTo 接口，获取指向该地址的第一条代码交叉引用，请求前会检查服务端可用性。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.xref_code_first_to("0x401000"))
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "xrefs": [
+      {
+        "basic_info": {
+          "from_address": 4199565,
+          "to_address": 4199570,
+          "from_address_hex": "0x40148D",
+          "to_address_hex": "0x401492",
+          "is_code_ref": false,
+          "is_user_defined": true
+        },
+        "type_details": {
+          "type_code": 16,
+          "type_char": "P",
+          "base_type_masked": 16,
+          "code_ref_type": "Call Far (This xref creates a function at the referenced location)",
+          "xref_flags": {
+            "XREF_USER": false,
+            "XREF_TAIL": false,
+            "XREF_BASE": false,
+            "XREF_PASTEND": false
+          }
+        },
+        "from_address_details": {
+          "disassembly": "call    _WinMain@16",
+          "is_head_address": true
+        },
+        "function_info": {
+          "function_start": 4199324,
+          "function_start_hex": "0x40139C",
+          "function_name": "?__scrt_common_main_seh@@YAHXZ",
+          "function_flags": 4199684
+        },
+        "segment_info": {
+          "segment_start": 4198400,
+          "segment_start_hex": "0x401000",
+          "segment_name": ".text",
+          "segment_type": 255,
+          "segment_perm": "None"
+        },
+        "reference_flags": {
+          "has_external_references": false,
+          "has_jump_flow_xrefs": true
+        },
+        "outgoing_references": {
+          "code_references": [
+            4199570,
+            4198400
+          ],
+          "far_code_references": [
+            4198400
+          ]
+        },
+        "incoming_references": {
+          "code_references_to": [
+            4199560
+          ],
+          "far_code_references_to": []
+        }
+      }
+    ]
+  },
+  "timestamp": 37865437
+}
 ```
 
-#### 
+#### xref_code_first_from
+
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefCodeFirstFrom 接口，获取从该地址出发的第一条代码交叉引用，请求前会检查服务端可用性。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.xref_code_first_from("0x401000"))
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "xrefs": [
+      {
+        "basic_info": {
+          "from_address": 4198400,
+          "to_address": 0,
+          "from_address_hex": "0x401000",
+          "to_address_hex": "0x0",
+          "is_code_ref": true,
+          "is_user_defined": true
+        },
+        "type_details": {
+          "type_code": 16,
+          "type_char": "P",
+          "base_type_masked": 16,
+          "code_ref_type": "Call Far (This xref creates a function at the referenced location)",
+          "xref_flags": {
+            "XREF_USER": false,
+            "XREF_TAIL": false,
+            "XREF_BASE": false,
+            "XREF_PASTEND": false
+          }
+        },
+        "from_address_details": {
+          "disassembly": "push    ebp",
+          "is_head_address": false
+        },
+        "function_info": {
+          "function_start": 4198400,
+          "function_start_hex": "0x401000",
+          "function_name": "_WinMain@16",
+          "function_flags": 4198638
+        },
+        "segment_info": {
+          "segment_start": 4198400,
+          "segment_start_hex": "0x401000",
+          "segment_name": ".text",
+          "segment_type": 255,
+          "permissions": "",
+          "segment_perm": ""
+        },
+        "reference_flags": {
+          "has_external_references": true,
+          "has_jump_flow_xrefs": false
+        },
+        "outgoing_references": {
+          "code_references": [
+            4199565
+          ],
+          "far_code_references": [
+            4199565
+          ]
+        },
+        "incoming_references": {
+          "code_references_to": [
+            4199565
+          ],
+          "far_code_references_to": [
+            4199565
+          ]
+        }
+      }
+    ]
+  },
+  "timestamp": 37980640
+}
 ```
 
-#### 
+#### xref_data_first_to
+
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefDataFirstTo 接口，获取指向该地址的第一条数据交叉引用，请求前会检查服务端可用性。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.xref_data_first_to("0x401000"))
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "analysis_result": {
+      "analyzed_address": 4198400,
+      "data_xrefs_to": [],
+      "outgoing_references": {
+        "code_xrefs_from": [],
+        "data_xrefs_from": [],
+        "far_code_xrefs_from": []
+      },
+      "switch_analysis": {
+        "status": "No switch table references found"
+      }
+    }
+  },
+  "timestamp": 38080250
+}
 ```
 
-#### 
+#### xref_data_first_from
+
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefDataFirstFrom 接口，获取从该地址出发的第一条数据交叉引用，请求前会检查服务端可用性。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.xref_data_first_from("0x401007"))
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "outgoing_data_xrefs": [
+      {
+        "from_address_hex": "0x401007",
+        "basic_info": {
+          "from_address": 4198407,
+          "is_user_defined": true,
+          "is_code_origin": true
+        },
+        "type_info": {
+          "type_code": 32,
+          "type_char": "?",
+          "base_type_masked": 0,
+          "data_ref_type": "Undefined data reference type"
+        },
+        "flags_info": {
+          "XREF_USER": true,
+          "XREF_TAIL": false,
+          "XREF_BASE": false,
+          "XREF_PASTEND": false
+        },
+        "from_address_details": {
+          "disassembly": "mov     esi, ds:LoadStringW",
+          "item_type": "Code (instruction)"
+        },
+        "function_info": {
+          "function_name": "_WinMain@16",
+          "function_start": 4198400,
+          "function_start_hex": "0x401000",
+          "frame_size": 60
+        },
+        "segment_comparison": {
+          "note": "One or both addresses have no valid segment"
+        },
+        "target_data_details": {
+          "note": "Target is not recognized data (unanalyzed or gap)",
+          "has_incoming_refs": false
+        }
+      }
+    ]
+  },
+  "timestamp": 38226593
+}
 ```
 
+#### xref_code_to_array
+
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefCodeFromArray 接口，获取所有从该地址出发的代码交叉引用列表，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.xref_code_to_array("0x401000"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "code_xrefs_to": [
+      {
+        "from_address": 4199565,
+        "to_address": 0,
+        "is_code_ref": false,
+        "direction": "Down (target address <= from address)"
+      }
+    ]
+  },
+  "timestamp": 38309062
+}
+```
+
+#### xref_code_from_array
+
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefCodeFromArray 接口，获取所有从该地址出发的代码交叉引用列表，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.xref_code_from_array("0x401000"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "code_xrefs_from": [],
+    "note": "No FAR code references from the specified address"
+  },
+  "timestamp": 38380906
+}
+```
+
+#### xref_data_to_array
+
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefDataToArray 接口，获取所有指向该地址的交叉引用列表，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.xref_data_to_array("0x402080"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "data_xrefs_to": [
+      {
+        "from_address": 4198407,
+        "to_address": 4202624,
+        "is_code_origin": true,
+        "direction": "Up (target address > from address)"
+      }
+    ]
+  },
+  "timestamp": 38484250
+}
+```
+
+#### xref_data_from_array
+
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefDataFromArray 接口，获取所有从该地址出发的数据交叉引用列表，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.xref_data_from_array("0x402080"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "data_xrefs_from": [],
+    "note": "No data references from the specified address"
+  },
+  "timestamp": 38516921
+}
+```
+
+#### xref_get_list_array
+
+接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefGetListArray 接口，获取该地址相关的所有交叉引用列表，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Memory(config)
+
+    print(info_page.xref_get_list_array("0x402080"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "target_address_dec": 4202624,
+    "target_address_hex": "0x402080",
+    "xref_counts": {
+      "code_to": 2,
+      "code_from": 0,
+      "data_to": 1,
+      "data_from": 0
+    },
+    "total_xrefs": 3
+  },
+  "timestamp": 38595187
+}
+```
 
 ### 通用辅助
 
@@ -2167,7 +2563,41 @@ if __name__ == '__main__':
 
 ```
 
+#### 
 
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
 
 
 
