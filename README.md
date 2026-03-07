@@ -730,188 +730,1093 @@ if __name__ == '__main__':
 
 段处理模块围绕程序内存区段展开，支持段表读取、段属性解析、地址归属判断等能力，可快速识别代码段、数据段、只读段等关键区域，为内存布局分析、数据提取与指令定位提供结构基础。
 
-#### 
+#### get_segments
+
+调用服务端 Segment 类的 GetSegment 接口，获取程序中所有段（Segment）的列表信息，请求前会检查服务端可用性。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Segment(config)
+
+    print(info_page.get_segments())
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "segments": [
+      {
+        "index": 0,
+        "name": ".text",
+        "start_address": 4198400,
+        "start_address_hex": "0x401000",
+        "end_address": 0,
+        "end_address_hex": "0x0",
+        "total_size": 4290768896,
+        "type": 255,
+        "selector": 0,
+        "bitness": 0,
+        "permissions": 0,
+        "class": "CODE"
+      },
+      {
+        "index": 1,
+        "name": ".idata",
+        "start_address": 4202496,
+        "start_address_hex": "0x402000",
+        "end_address": 0,
+        "end_address_hex": "0x0",
+        "total_size": 4290764800,
+        "type": 255,
+        "selector": 0,
+        "bitness": 0,
+        "permissions": 0,
+        "class": "DATA"
+      },
+      {
+        "index": 2,
+        "name": ".rdata",
+        "start_address": 4202752,
+        "start_address_hex": "0x402100",
+        "end_address": 0,
+        "end_address_hex": "0x0",
+        "total_size": 4290764544,
+        "type": 255,
+        "selector": 0,
+        "bitness": 0,
+        "permissions": 0,
+        "class": "DATA"
+      },
+      {
+        "index": 3,
+        "name": ".data",
+        "start_address": 4206592,
+        "start_address_hex": "0x403000",
+        "end_address": 0,
+        "end_address_hex": "0x0",
+        "total_size": 4290760704,
+        "type": 255,
+        "selector": 0,
+        "bitness": 0,
+        "permissions": 0,
+        "class": "DATA"
+      },
+      {
+        "index": 4,
+        "name": ".gfids",
+        "start_address": 4210688,
+        "start_address_hex": "0x404000",
+        "end_address": 0,
+        "end_address_hex": "0x0",
+        "total_size": 4290756608,
+        "type": 255,
+        "selector": 0,
+        "bitness": 0,
+        "permissions": 0,
+        "class": "DATA"
+      }
+    ],
+    "total_segments": 5,
+    "description": "Segments information based on template"
+  },
+  "timestamp": 24864687
+}
 ```
 
-#### 
+#### get_segment_count
+
+调用服务端 Segment 类的 GetSegmentCount 接口，获取程序中段的总数，请求前会检查服务端可用性。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Segment(config)
+
+    print(info_page.get_segment_count())
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "total_segments": 5,
+    "description": "Total number of segments in the current disassembled file"
+  },
+  "timestamp": 24996453
+}
 ```
 
-#### 
+#### get_segment_from_addr
+
+接收地址参数，验证地址格式后，调用服务端 Segment 类的 GetSegmentFromAddr 接口，获取指定地址所属段的信息，请求前会检查服务端可用性。
 
 ```python
+from IDAMoles import *
 
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Segment(config)
+
+    print(info_page.get_segment_from_addr("0x401000"))
 ```
 
 输出JSON格式：
 
 ```json
-
+{
+  "status": "success",
+  "result": {
+    "parsed_address": 4198400,
+    "parsed_address_hex": "0x401000",
+    "segment_name": ".text",
+    "address": 4198400,
+    "address_hex": "0x401000",
+    "segment_start": 4198400,
+    "segment_start_hex": "0x401000",
+    "segment_end": 0,
+    "segment_end_hex": "0x0",
+    "description": "Segment containing the specified address"
+  },
+  "timestamp": 25144109
+}
 ```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-#### 
-
-```python
-
-```
-
-输出JSON格式：
-
-```json
-
-```
-
-
-
 
 ### 逆向分析
 
 逆向分析模块集成反汇编、伪代码还原、指令序列提取、代码行与地址互转等核心能力，实现从机器指令到高级语义的转换，大幅降低人工阅读汇编代码的成本，是深度逆向与逻辑还原的核心引擎。
 
+#### disassembly_function
+
+接收地址参数，验证地址格式后，调用服务端 Reverse 类的 DisassembleFunction 接口，对指定地址的函数进行反汇编，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Reverse(config)
+
+    print(info_page.disassembly_function("0x401000"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "function_info": {
+      "start_address": 4198400,
+      "start_address_hex": "0x401000",
+      "end_address": 4198672,
+      "end_address_hex": "0x401110",
+      "total_instructions": 100,
+      "total_size": 272
+    },
+    "disassembly": [
+      {
+        "address": 4198400,
+        "address_hex": "0x401000",
+        "disassembly": "push    ebp",
+        "length": 1,
+        "bytes": "55"
+      },
+      {
+        "address": 4198401,
+        "address_hex": "0x401001",
+        "disassembly": "mov     ebp, esp",
+        "length": 2,
+        "bytes": "8bec"
+      },
+      {
+        "address": 4198403,
+        "address_hex": "0x401003",
+        "disassembly": "sub     esp, 24h",
+        "length": 3,
+        "bytes": "83ec24"
+      }
+    ]
+  },
+  "timestamp": 25281343
+}
+```
+
+#### disassembly_count
+
+接收地址和行数参数，验证地址格式并校验行数在 1-1024 范围内后，调用服务端 Reverse 类的 DisassemblyCount 接口，反汇编指定地址开始的指定行数指令，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Reverse(config)
+
+    print(info_page.disassembly_count("0x401000","3"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "request_start_address": 4198400,
+    "request_start_address_hex": "0x401000",
+    "request_line_count": 3,
+    "actual_line_count": 3,
+    "actual_start_address_hex": "0x401000",
+    "actual_end_address_hex": "0x0000000000401006",
+    "instructions": [
+      {
+        "address_hex": "0x401000",
+        "address_dec": 4198400,
+        "opcode_hex": "55 ",
+        "disasm_text": "push    ebp"
+      },
+      {
+        "address_hex": "0x401001",
+        "address_dec": 4198401,
+        "opcode_hex": "8B EC ",
+        "disasm_text": "mov     ebp, esp"
+      },
+      {
+        "address_hex": "0x401003",
+        "address_dec": 4198403,
+        "opcode_hex": "83 EC 24 ",
+        "disasm_text": "sub     esp, 24h"
+      }
+    ]
+  },
+  "timestamp": 25588203
+}
+```
+
+#### disassembly_range
+
+接收起始和结束地址参数，验证地址格式后，调用服务端 Reverse 类的 DisassemblyRange 接口，反汇编指定地址范围内的指令，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Reverse(config)
+
+    print(info_page.disassembly_range("0x401000","0x401020"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "request_start_address": 4198400,
+    "request_start_address_hex": "0x401000",
+    "request_end_address": 4198432,
+    "request_end_address_hex": "0x401020",
+    "actual_processed_count": 12,
+    "actual_start_address_hex": "0x401000",
+    "actual_end_address_hex": "0x0000000000401020",
+    "instructions": [
+      {
+        "address_hex": "0x401000",
+        "address_dec": 4198400,
+        "opcode_hex": "55 ",
+        "disasm_text": "push    ebp"
+      },
+      {
+        "address_hex": "0x401001",
+        "address_dec": 4198401,
+        "opcode_hex": "8B EC ",
+        "disasm_text": "mov     ebp, esp"
+      },
+      {
+        "address_hex": "0x401003",
+        "address_dec": 4198403,
+        "opcode_hex": "83 EC 24 ",
+        "disasm_text": "sub     esp, 24h"
+      },
+      {
+        "address_hex": "0x401006",
+        "address_dec": 4198406,
+        "opcode_hex": "A1 04 30 40 00 ",
+        "disasm_text": "mov     eax, ___security_cookie"
+      },
+      {
+        "address_hex": "0x40100B",
+        "address_dec": 4198411,
+        "opcode_hex": "33 C5 ",
+        "disasm_text": "xor     eax, ebp"
+      },
+      {
+        "address_hex": "0x40100D",
+        "address_dec": 4198413,
+        "opcode_hex": "89 45 FC ",
+        "disasm_text": "mov     [ebp+var_4], eax"
+      },
+      {
+        "address_hex": "0x401010",
+        "address_dec": 4198416,
+        "opcode_hex": "56 ",
+        "disasm_text": "push    esi"
+      },
+      {
+        "address_hex": "0x401011",
+        "address_dec": 4198417,
+        "opcode_hex": "8B 35 80 20 40 00 ",
+        "disasm_text": "mov     esi, ds:LoadStringW"
+      },
+      {
+        "address_hex": "0x401017",
+        "address_dec": 4198423,
+        "opcode_hex": "57 ",
+        "disasm_text": "push    edi"
+      },
+      {
+        "address_hex": "0x401018",
+        "address_dec": 4198424,
+        "opcode_hex": "8B 7D 08 ",
+        "disasm_text": "mov     edi, [ebp+hInstance]"
+      },
+      {
+        "address_hex": "0x40101B",
+        "address_dec": 4198427,
+        "opcode_hex": "6A 64 ",
+        "disasm_text": "push    64h ; 'd'; cchBufferMax"
+      },
+      {
+        "address_hex": "0x40101D",
+        "address_dec": 4198429,
+        "opcode_hex": "68 48 34 ",
+        "disasm_text": "push    offset WindowName; lpBuffer"
+      }
+    ],
+    "note": "The specified address range has been completely disassembled"
+  },
+  "timestamp": 25678687
+}
+```
+
+#### decompile_checked
+
+接收地址参数，验证地址格式后，调用服务端 Reverse 类的 DecompileChecked 接口，对指定地址进行反编译校验，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Reverse(config)
+
+    print(info_page.decompile_checked("0x401000"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "requested_address": 4198400,
+    "requested_address_hex": "0x401000",
+    "flag": "true"
+  },
+  "timestamp": 25813265
+}
+```
+
+#### decompile_micro_code
+
+接收地址参数，验证地址格式后，调用服务端 Reverse 类的 GetMicroCode 接口，获取指定地址的微代码反编译结果，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Reverse(config)
+
+    print(info_page.decompile_micro_code("0x401000"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "function_start_address": 4198400,
+    "function_start_address_hex": "0x401000",
+    "requested_address": 4198400,
+    "requested_address_hex": "0x401000",
+    "microcode": "\u0001\u00130. 0 \u0002\u0013\u0001\u0003; STKD=30 MINREF=3C/END=60 ARGS: OFF=64/MINREF=164/END=164/SHADOW=0\u0002\u0003\n\n\u0001\u00130. 0 \u0002\u0013\u0001\u0003; SAVEDREGS: ebp.4,esi.4,edi.4,ebx.4\u0002\u0003\n\n\u0001\u00130. 0 \u0002\u0013\u0001\u0003; 1WAY-BLOCK 0 FAKE OUTBOUNDS: 1 [START=401000 END=401000] MINREFS: STK=60/ARG=164, MAXBSP: 0\u0002\u0003\n\n\u0001\u00130. 0 \u0002\u0013\u0001\u0003; DEF: (eax.4,esi.4,sp+38.8,sp+44.4,arg+0.4,arg+C.4)\u0002\u0003\n\n\u0001\u00130"
+  },
+  "timestamp": 25935843
+}
+```
+
+#### decompile_from_addr
+
+接收地址参数，验证地址格式后，调用服务端 Reverse 类的 DecompileFunctionFromAddr 接口，根据地址反编译对应函数，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Reverse(config)
+
+    print(info_page.decompile_from_addr("0x401000"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "func_ea": 4198400,
+    "func_ea_hex": "0x401000",
+    "func_name": "_WinMain@16",
+    "pseudocode": "int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)\n{\n  HWND Window; // eax\n  HWND v5; // esi\n  HACCEL hAccTable; // [esp+8h] [ebp-24h]\n  tagMSG Msg; // [esp+Ch] [ebp-20h] BYREF\n\n  LoadStringW(hInstance, 0x67u, &WindowName, 100);\n  LoadStringW(hInstance, 0x6Du, &ClassName, 100);\n  sub_401110(hInstance);\n  ::hInstance = hInstance;\n  Window = CreateWindowExW(0, &ClassName, &WindowName, 0xCF0000u, 0x80000000, 0, 0x80000000, 0, 0, 0, hInstance, 0);\n  v5 = Window;\n  if ( !Window )\n    return 0;\n  ShowWindow(Window, nShowCmd);\n  UpdateWindow(v5);\n  hAccTable = LoadAcceleratorsW(hInstance, (LPCWSTR)0x6D);\n  while ( GetMessageW(&Msg, 0, 0, 0) )\n  {\n    if ( !TranslateAcceleratorW(Msg.hwnd, hAccTable, &Msg) )\n    {\n      TranslateMessage(&Msg);\n      DispatchMessageW(&Msg);\n    }\n  }\n  return Msg.wParam;\n}\n",
+    "line_count": 28
+  },
+  "timestamp": 26053203
+}
+```
+
+#### decompile_from_name
+
+接收函数名称参数，校验非空后，调用服务端 Reverse 类的 DecompileFunctionFromName 接口，根据名称反编译对应函数，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Reverse(config)
+
+    print(info_page.decompile_from_name("_WinMain@16"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "func_ea": 4198400,
+    "func_ea_hex": "0x401000",
+    "func_name": "_WinMain@16",
+    "pseudocode": "int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)\n{\n  HWND Window; // eax\n  HWND v5; // esi\n  HACCEL hAccTable; // [esp+8h] [ebp-24h]\n  tagMSG Msg; // [esp+Ch] [ebp-20h] BYREF\n\n  LoadStringW(hInstance, 0x67u, &WindowName, 100);\n  LoadStringW(hInstance, 0x6Du, &ClassName, 100);\n  sub_401110(hInstance);\n  ::hInstance = hInstance;\n  Window = CreateWindowExW(0, &ClassName, &WindowName, 0xCF0000u, 0x80000000, 0, 0x80000000, 0, 0, 0, hInstance, 0);\n  v5 = Window;\n  if ( !Window )\n    return 0;\n  ShowWindow(Window, nShowCmd);\n  UpdateWindow(v5);\n  hAccTable = LoadAcceleratorsW(hInstance, (LPCWSTR)0x6D);\n  while ( GetMessageW(&Msg, 0, 0, 0) )\n  {\n    if ( !TranslateAcceleratorW(Msg.hwnd, hAccTable, &Msg) )\n    {\n      TranslateMessage(&Msg);\n      DispatchMessageW(&Msg);\n    }\n  }\n  return Msg.wParam;\n}\n",
+    "line_count": 28
+  },
+  "timestamp": 26105687
+}
+```
+
+#### decompile_line_to_address
+
+接收地址和行号参数，验证地址格式并校验行号非空后，调用服务端 Reverse 类的 DecompileLineToAddress 接口，将反编译代码的行号映射到对应内存地址，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Reverse(config)
+
+    print(info_page.decompile_line_to_address("0x401000","8"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "line_number": 8,
+    "function_address": 4198400,
+    "function_address_hex": "0x401000",
+    "memory_address": 4198437,
+    "memory_address_hex": "0x401025"
+  },
+  "timestamp": 26320421
+}
+```
+
+#### decompile_address_to_line
+
+接收地址参数，验证地址格式后，调用服务端 Reverse 类的 DecompileAddressToLine 接口，将指定地址映射到反编译代码的行号，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Reverse(config)
+
+    print(info_page.decompile_address_to_line("0x401025"))
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "line_number": 8,
+    "address": 4198437,
+    "address_hex": "0x401025"
+  },
+  "timestamp": 26457390
+}
+```
+
+#### get_select_decompile
+
+调用服务端 Reverse 类的 GetSelectDecompile 接口，获取当前选中区域的反编译代码，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Reverse(config)
+
+    print(info_page.get_select_decompile())
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "start_ea": 4198502,
+    "start_ea_hex": "0x401066",
+    "end_ea": 4198535,
+    "end_ea_hex": "0x401087",
+    "function_start_ea": 4198400,
+    "function_start_ea_hex": "0x401000",
+    "filtered_pseudocode_lines": [
+      {
+        "line": 12,
+        "address": 4198502,
+        "address_hex": "0x401066",
+        "pseudocode": "  Window = CreateWindowExW(0, &ClassName, &WindowName, 0xCF0000u, 0x80000000, 0, 0x80000000, 0, 0, 0, hInstance, 0);"
+      },
+      {
+        "line": 13,
+        "address": 4198508,
+        "address_hex": "0x40106C",
+        "pseudocode": "  v5 = Window;"
+      },
+      {
+        "line": 14,
+        "address": 4198512,
+        "address_hex": "0x401070",
+        "pseudocode": "  if ( !Window )"
+      },
+      {
+        "line": 16,
+        "address": 4198522,
+        "address_hex": "0x40107A",
+        "pseudocode": "  ShowWindow(Window, nShowCmd);"
+      },
+      {
+        "line": 17,
+        "address": 4198529,
+        "address_hex": "0x401081",
+        "pseudocode": "  UpdateWindow(v5);"
+      }
+    ],
+    "matched_line_count": 5,
+    "has_matched": true
+  },
+  "timestamp": 26635062
+}
+```
+
+#### get_select_disassembly
+
+调用服务端 Reverse 类的 GetSelectDisassembly 接口，获取当前选中区域的反汇编指令，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Reverse(config)
+
+    print(info_page.get_select_disassembly())
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "selected_start_address": 4198582,
+    "selected_start_address_hex": "0x4010B6",
+    "selected_end_address": 4198598,
+    "selected_end_address_hex": "0x4010C6",
+    "actual_processed_count": 5,
+    "actual_start_address_hex": "0x4010B6",
+    "actual_end_address_hex": "0x4010C6",
+    "instructions": [
+      {
+        "address_hex": "0x4010B6",
+        "address_dec": 4198582,
+        "opcode_hex": "8D 45 E0 ",
+        "disasm_text": "lea     eax, [ebp+Msg]"
+      },
+      {
+        "address_hex": "0x4010B9",
+        "address_dec": 4198585,
+        "opcode_hex": "50 ",
+        "disasm_text": "push    eax; lpMsg"
+      },
+      {
+        "address_hex": "0x4010BA",
+        "address_dec": 4198586,
+        "opcode_hex": "FF 75 DC ",
+        "disasm_text": "push    [ebp+hAccTable]; hAccTable"
+      },
+      {
+        "address_hex": "0x4010BD",
+        "address_dec": 4198589,
+        "opcode_hex": "FF 75 E0 ",
+        "disasm_text": "push    [ebp+Msg.hwnd]; hWnd"
+      },
+      {
+        "address_hex": "0x4010C0",
+        "address_dec": 4198592,
+        "opcode_hex": "FF 15 70 20 40 00 ",
+        "disasm_text": "call    ds:TranslateAcceleratorW"
+      }
+    ],
+    "note": "The selected address range has been completely disassembled."
+  },
+  "timestamp": 26719015
+}
+```
+
+#### get_select_hex
+
+调用服务端 Reverse 类的 GetSelectHex 接口，获取当前选中区域的十六进制数据，请求前会检查服务端可用性。
+
+```python
+from IDAMoles import *
+
+if __name__ == '__main__':
+    config=Config(address="127.0.0.1",port=8000)
+    client = BaseHttpClient(config)
+
+    info_page = Reverse(config)
+
+    print(info_page.get_select_hex())
+```
+
+输出JSON格式：
+
+```json
+{
+  "status": "success",
+  "result": {
+    "selected_start_address": 4198688,
+    "selected_start_address_hex": "0x401120",
+    "selected_end_address": 4198698,
+    "selected_end_address_hex": "0x40112A",
+    "actual_read_byte_count": 10,
+    "actual_start_address_hex": "0x401120",
+    "actual_end_address_hex": "0x401129",
+    "hex_bytes": [
+      {
+        "address_hex": "0x401120",
+        "address_dec": 4198688,
+        "byte_hex": "6A",
+        "ascii_char": "j"
+      },
+      {
+        "address_hex": "0x401121",
+        "address_dec": 4198689,
+        "byte_hex": "6B",
+        "ascii_char": "k"
+      },
+      {
+        "address_hex": "0x401122",
+        "address_dec": 4198690,
+        "byte_hex": "51",
+        "ascii_char": "Q"
+      },
+      {
+        "address_hex": "0x401123",
+        "address_dec": 4198691,
+        "byte_hex": "C7",
+        "ascii_char": "."
+      },
+      {
+        "address_hex": "0x401124",
+        "address_dec": 4198692,
+        "byte_hex": "45",
+        "ascii_char": "E"
+      },
+      {
+        "address_hex": "0x401125",
+        "address_dec": 4198693,
+        "byte_hex": "CC",
+        "ascii_char": "."
+      },
+      {
+        "address_hex": "0x401126",
+        "address_dec": 4198694,
+        "byte_hex": "30",
+        "ascii_char": "0"
+      },
+      {
+        "address_hex": "0x401127",
+        "address_dec": 4198695,
+        "byte_hex": "00",
+        "ascii_char": "."
+      },
+      {
+        "address_hex": "0x401128",
+        "address_dec": 4198696,
+        "byte_hex": "00",
+        "ascii_char": "."
+      },
+      {
+        "address_hex": "0x401129",
+        "address_dec": 4198697,
+        "byte_hex": "00",
+        "ascii_char": "."
+      }
+    ],
+    "hex_batch": "6A 6B 51 C7 45 CC 30 00 00 00 ",
+    "ascii_batch": "jkQ.E.0...",
+    "note": "The selected address range has been completely read (hex bytes + ASCII)."
+  },
+  "timestamp": 26822062
+}
+```
+
 ### 内存操作
 
 内存操作模块提供内存数据读取、结构体解析、字符串提取、内存搜索与交叉引用查询等能力，支持按字节/字/双字精准读取数据，并追踪代码与数据间的引用关系，实现对程序运行时状态的完整观测。
 
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
 ### 通用辅助
 
 通用辅助模块提供注释编辑、符号重命名、变量修改、结构成员管理等便捷操作，用于优化 IDA 展示效果、提升分析效率，让逆向成果更易沉淀、共享与二次利用，是工程化分析必不可少的辅助能力。
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
+
+#### 
+
+```python
+
+```
+
+输出JSON格式：
+
+```json
+
+```
 
 
 
