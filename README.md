@@ -8,12 +8,6 @@ IDA Moles 是一款专业逆向分析接口工具，专为 IDA Pro 9.1 打造，
 
 ```bash
 CMD> pip install idamoles
-Collecting idamoles
-  Downloading idamoles-1.0.7-py3-none-any.whl.metadata (1.8 kB)
-Downloading idamoles-1.0.7-py3-none-any.whl (19 kB)
-Installing collected packages: idamoles
-Successfully installed idamoles-1.0.7
-
 CMD> pip show idamoles
 Name: IDAMoles
 Version: 1.0.7
@@ -46,6 +40,8 @@ The IDA path has been set to: d:\idapro9.1\plugins
 Download progress: 100.00%
 [*] Install Moles Success
 >>>
+>>> config.open_ida_with_program("C://win32.exe",auto_mode=True,force_new=True)
+SUCCESS: IDA has been started and the program has been loaded:C://win32.exe
 ```
 
 仅需简单配置 IDA Pro 路径、安装插件即可完成环境搭建并加载目标程序开展分析工作。
