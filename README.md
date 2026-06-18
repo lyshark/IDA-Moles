@@ -1,12 +1,12 @@
-# IDA-Moles 静态逆向分析组件
+# IDA-Moles Static Reverse Analysis Component
 
 <img src="https://github.com/user-attachments/assets/60f86fb4-04fb-45d7-88ab-f64e5e7516d0" alt="ladyida" width="12%">
 
-IDA Moles 是一款专业逆向分析接口工具，专为 IDA Pro 9.1 打造，并适配 Python 3.8 及以上版本，该工具以标准化调用逻辑为核心，能高效控制 IDA Pro 执行反汇编、反编译、内存分析等各类逆向操作，拥有高效反编译控制、高级调试、内存分析、函数解析、MCP 服务器扩展及自动化批量处理等全方位核心功能，不仅能实现伪代码获取、断点设置、内存布局分析、函数信息解析等基础逆向操作，还支持自定义 MCP 服务器接口开发以满足定制化需求，更可通过编程接口实现逆向分析流程的自动化与大量样本的批量处理，可显著提升逆向分析的效率与灵活性，满足各类复杂的逆向分析场景需求。
+IDA Moles is a professional reverse analysis interface tool specifically designed for IDA Pro 9.1 and compatible with Python 3.8 and above. Centered around standardized call logic, this tool efficiently controls IDA Pro to perform various reverse operations including disassembly, decompilation, and memory analysis. It features comprehensive core capabilities such as efficient decompilation control, advanced debugging, memory analysis, function parsing, MCP server extension, and automated batch processing. Not only does it enable basic reverse operations like pseudocode acquisition, breakpoint setting, memory layout analysis, and function information parsing, but it also supports custom MCP server interface development to meet customized requirements. Furthermore, it allows for automation of reverse analysis workflows and batch processing of large sample sets through its programming interface, significantly enhancing the efficiency and flexibility of reverse analysis to meet the demands of complex reverse analysis scenarios.
 
-## 快速安装
+## Quick Installation
 
-1、首先用户需要通过`PIP`快速安装部署，打开命令提示符或终端，执行以下命令安装最新版本的`IDA Moles`开发工具包。
+1. First, users need to quickly install and deploy via `PIP`. Open the command prompt or terminal and execute the following command to install the latest version of the `IDA Moles` development toolkit.
 
 ```bash
 CMD> pip install idamoles
@@ -25,7 +25,7 @@ License: MIT Licence
 Location: C:\Users\admin\site-packages
 ```
 
-2、至此开始安装IDAMoles驱动文件，通过找到`D://IDA Professional 9.1`目录，并执行安装命令完成插件的部署。
+2. Now begin installing the IDAMoles driver files. Locate the `D://IDA Professional 9.1` directory and execute the installation command to complete the plugin deployment.
 
 ```bash
 CMD> python
@@ -42,28 +42,28 @@ The IDA path has been set to: d:\idapro9.1\plugins
 SUCCESS: IDA has been started and the program has been loaded:C://win32.exe
 ```
 
-仅需简单配置 IDA Pro 路径、安装插件即可完成环境搭建并加载目标程序开展分析工作。
+Simply configure the IDA Pro path and install the plugin to complete the environment setup and load the target program for analysis.
 
-## 接口规范
+## Interface Specification
 
-该组件基于 IDA 9.1 标准 C++ SDK 开发工具包进行研发，在缺乏有效参考文档与技术支持的前提下，业余时间花费1个月，作者通过理解IDA逆向分析原理与技术攻坚，成功实现了 50 余项核心功能，并按照功能属性系统性归档为六大模块：
+This component is developed based on the IDA 9.1 standard C++ SDK development toolkit. Despite lacking effective reference documentation and technical support, the author successfully implemented over 50 core features within one month by understanding IDA reverse analysis principles. These features are systematically categorized into six major modules based on their functional attributes:
 
- - Info（信息解析）
- - Function（函数分析）
- - Segment（段处理）
- - Reverse（逆向分析）
- - Memory（内存操作）
- - Other（通用辅助）
+ - Info (Information Parsing)
+ - Function (Function Analysis)
+ - Segment (Segment Processing)
+ - Reverse (Reverse Analysis)
+ - Memory (Memory Operations)
+ - Other (General Utilities)
 
-每个模块下均涵盖数十项接口能力，这些接口不仅覆盖了二进制分析、代码逆向、内存解析等核心场景，更构建起 AI 智能分析所需的底层技术基座，为后续智能化分析、自动化逆向等高阶能力的落地提供了坚实且可扩展的技术支撑。
+Each module encompasses dozens of interface capabilities. These interfaces not only cover core scenarios such as binary analysis, code reverse engineering, and memory parsing but also establish the underlying technical foundation required for AI intelligent analysis, providing solid and extensible technical support for the implementation of advanced capabilities like intelligent analysis and automated reverse engineering.
 
-### 信息解析
+### Information Parsing
 
-信息解析模块负责对目标程序进行基础元数据提取，快速获取文件结构、加载基址、编译信息、运行环境等核心属性，为后续逆向分析提供全局视图与环境依据，是自动化分析流程的起点。
+The Information Parsing module is responsible for extracting basic metadata from the target program, quickly acquiring core attributes such as file structure, load base address, compilation information, and runtime environment. It provides a global view and environmental basis for subsequent reverse analysis, serving as the starting point for automated analysis workflows.
 
 #### get_basic_info
 
-调用服务端 Info 类的 GetBasicInfo 接口，获取程序的基础信息。
+Call the GetBasicInfo interface of the server-side Info class to obtain basic information about the program.
 
 ```python
 from IDAMoles import *
@@ -77,7 +77,7 @@ if __name__ == '__main__':
     print(info_page.get_basic_info())
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -241,7 +241,7 @@ if __name__ == '__main__':
 
 #### get_image_info
 
-调用服务端 Info 类的 GetImageInfo 接口，获取程序的镜像（Image）相关信息。
+Call the GetImageInfo interface of the server-side Info class to obtain image-related information about the program.
 
 ```python
 from IDAMoles import *
@@ -255,7 +255,7 @@ if __name__ == '__main__':
     print(info_page.get_image_info())
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -272,13 +272,13 @@ if __name__ == '__main__':
 }
 ```
 
-### 函数分析
+### Function Analysis
 
-函数分析模块聚焦程序执行流的最小单元，实现函数枚举、地址定位、名称检索、边界识别与导入表解析，精准建立程序内所有函数的索引体系，为代码理解、漏洞定位与逻辑还原提供关键支撑。
+The Function Analysis module focuses on the smallest unit of program execution flow, implementing function enumeration, address location, name retrieval, boundary identification, and import table parsing. It precisely establishes an indexing system for all functions within the program, providing key support for code understanding, vulnerability location, and logic restoration.
 
 #### get_functions
 
-调用服务端 Function 类的 GetFunction 接口，获取程序中所有函数的列表信息。
+Call the GetFunction interface of the server-side Function class to obtain a list of all functions in the program.
 
 ```python
 from IDAMoles import *
@@ -292,7 +292,7 @@ if __name__ == '__main__':
     print(info_page.get_functions())
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -373,7 +373,7 @@ if __name__ == '__main__':
 
 #### get_function_info
 
-接收函数起始地址参数，验证地址格式后，调用服务端 Function 类的 GetFunctionInfo 接口，获取指定地址函数的详细信息。
+Receive a function start address parameter, validate the address format, then call the GetFunctionInfo interface of the server-side Function class to obtain detailed information about the function at the specified address.
 
 ```python
 from IDAMoles import *
@@ -387,7 +387,7 @@ if __name__ == '__main__':
     print(info_page.get_function_info("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -426,7 +426,7 @@ if __name__ == '__main__':
 
 #### get_import_functions
 
-调用服务端 Function 类的 GetImportFunctions 接口，获取程序中导入函数的列表信息。
+Call the GetImportFunctions interface of the server-side Function class to obtain a list of imported functions in the program.
 
 ```python
 from IDAMoles import *
@@ -440,7 +440,7 @@ if __name__ == '__main__':
     print(info_page.get_import_functions())
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -479,7 +479,7 @@ if __name__ == '__main__':
 
 #### get_function_count
 
-调用服务端 Function 类的 GetFunctionCount 接口，获取程序中函数的总数。
+Call the GetFunctionCount interface of the server-side Function class to obtain the total number of functions in the program.
 
 ```python
 from IDAMoles import *
@@ -493,7 +493,7 @@ if __name__ == '__main__':
     print(info_page.get_function_count())
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -507,7 +507,7 @@ if __name__ == '__main__':
 
 #### get_function_by_addr
 
-接收函数起始地址参数，验证地址格式后，调用服务端 Function 类的 GetFunctionByAddr 接口，根据地址获取对应函数信息。
+Receive a function start address parameter, validate the address format, then call the GetFunctionByAddr interface of the server-side Function class to obtain function information by address.
 
 ```python
 from IDAMoles import *
@@ -521,7 +521,7 @@ if __name__ == '__main__':
     print(info_page.get_function_by_addr("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -566,7 +566,7 @@ if __name__ == '__main__':
 
 #### get_function_by_name
 
-接收函数名称参数，校验非空后，调用服务端 Function 类的 GetFunctionByName 接口，根据名称获取对应函数信息。
+Receive a function name parameter, validate it is not empty, then call the GetFunctionByName interface of the server-side Function class to obtain function information by name.
 
 ```python
 from IDAMoles import *
@@ -580,7 +580,7 @@ if __name__ == '__main__':
     print(info_page.get_function_by_name("_WinMain@16"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -626,7 +626,7 @@ if __name__ == '__main__':
 
 #### find_function_by_name
 
-接收搜索关键词参数，校验非空后，调用服务端 Function 类的 FindFunctionByName 接口，模糊搜索包含关键词的函数信息。
+Receive a search keyword parameter, validate it is not empty, then call the FindFunctionByName interface of the server-side Function class to perform fuzzy search for functions containing the keyword.
 
 ```python
 from IDAMoles import *
@@ -640,7 +640,7 @@ if __name__ == '__main__':
     print(info_page.find_function_by_name("WinMain"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -720,13 +720,13 @@ if __name__ == '__main__':
 }
 ```
 
-### 段处理
+### Segment Processing
 
-段处理模块围绕程序内存区段展开，支持段表读取、段属性解析、地址归属判断等能力，可快速识别代码段、数据段、只读段等关键区域，为内存布局分析、数据提取与指令定位提供结构基础。
+The Segment Processing module focuses on program memory segments, supporting capabilities such as segment table reading, segment attribute parsing, and address ownership determination. It can quickly identify key regions like code segments, data segments, and read-only segments, providing a structural foundation for memory layout analysis, data extraction, and instruction location.
 
 #### get_segments
 
-调用服务端 Segment 类的 GetSegment 接口，获取程序中所有段（Segment）的列表信息。
+Call the GetSegment interface of the server-side Segment class to obtain a list of all segments in the program.
 
 ```python
 from IDAMoles import *
@@ -740,7 +740,7 @@ if __name__ == '__main__':
     print(info_page.get_segments())
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -827,7 +827,7 @@ if __name__ == '__main__':
 
 #### get_segment_count
 
-调用服务端 Segment 类的 GetSegmentCount 接口，获取程序中段的总数。
+Call the GetSegmentCount interface of the server-side Segment class to obtain the total number of segments in the program.
 
 ```python
 from IDAMoles import *
@@ -841,7 +841,7 @@ if __name__ == '__main__':
     print(info_page.get_segment_count())
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -856,7 +856,7 @@ if __name__ == '__main__':
 
 #### get_segment_from_addr
 
-接收地址参数，验证地址格式后，调用服务端 Segment 类的 GetSegmentFromAddr 接口，获取指定地址所属段的信息。
+Receive an address parameter, validate the address format, then call the GetSegmentFromAddr interface of the server-side Segment class to obtain information about the segment containing the specified address.
 
 ```python
 from IDAMoles import *
@@ -870,7 +870,7 @@ if __name__ == '__main__':
     print(info_page.get_segment_from_addr("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -891,13 +891,13 @@ if __name__ == '__main__':
 }
 ```
 
-### 逆向分析
+### Reverse Analysis
 
-逆向分析模块集成反汇编、伪代码还原、指令序列提取、代码行与地址互转等核心能力，实现从机器指令到高级语义的转换，大幅降低人工阅读汇编代码的成本，是深度逆向与逻辑还原的核心引擎。
+The Reverse Analysis module integrates core capabilities such as disassembly, pseudocode restoration, instruction sequence extraction, and code line-address conversion. It enables the transformation from machine instructions to high-level semantics, significantly reducing the cost of manually reading assembly code. It serves as the core engine for deep reverse engineering and logic restoration.
 
 #### disassembly_function
 
-接收地址参数，验证地址格式后，调用服务端 Reverse 类的 DisassembleFunction 接口，对指定地址的函数进行反汇编。
+Receive an address parameter, validate the address format, then call the DisassembleFunction interface of the server-side Reverse class to disassemble the function at the specified address.
 
 ```python
 from IDAMoles import *
@@ -911,7 +911,7 @@ if __name__ == '__main__':
     print(info_page.disassembly_function("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -955,7 +955,7 @@ if __name__ == '__main__':
 
 #### disassembly_count
 
-接收地址和行数参数，验证地址格式并校验行数在 1-1024 范围内后，调用服务端 Reverse 类的 DisassemblyCount 接口，反汇编指定地址开始的指定行数指令。
+Receive address and line count parameters, validate the address format and check that the line count is within the range of 1-1024, then call the DisassemblyCount interface of the server-side Reverse class to disassemble the specified number of instructions starting from the specified address.
 
 ```python
 from IDAMoles import *
@@ -969,7 +969,7 @@ if __name__ == '__main__':
     print(info_page.disassembly_count("0x401000","3"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1009,7 +1009,7 @@ if __name__ == '__main__':
 
 #### disassembly_range
 
-接收起始和结束地址参数，验证地址格式后，调用服务端 Reverse 类的 DisassemblyRange 接口，反汇编指定地址范围内的指令。
+Receive start and end address parameters, validate the address format, then call the DisassemblyRange interface of the server-side Reverse class to disassemble instructions within the specified address range.
 
 ```python
 from IDAMoles import *
@@ -1023,7 +1023,7 @@ if __name__ == '__main__':
     print(info_page.disassembly_range("0x401000","0x401020"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1119,7 +1119,7 @@ if __name__ == '__main__':
 
 #### decompile_checked
 
-接收地址参数，验证地址格式后，调用服务端 Reverse 类的 DecompileChecked 接口，对指定地址进行反编译校验。
+Receive an address parameter, validate the address format, then call the DecompileChecked interface of the server-side Reverse class to perform decompilation validation for the specified address.
 
 ```python
 from IDAMoles import *
@@ -1133,7 +1133,7 @@ if __name__ == '__main__':
     print(info_page.decompile_checked("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1149,7 +1149,7 @@ if __name__ == '__main__':
 
 #### decompile_micro_code
 
-接收地址参数，验证地址格式后，调用服务端 Reverse 类的 GetMicroCode 接口，获取指定地址的微代码反编译结果。
+Receive an address parameter, validate the address format, then call the GetMicroCode interface of the server-side Reverse class to obtain the microcode decompilation result for the specified address.
 
 ```python
 from IDAMoles import *
@@ -1163,7 +1163,7 @@ if __name__ == '__main__':
     print(info_page.decompile_micro_code("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1181,7 +1181,7 @@ if __name__ == '__main__':
 
 #### decompile_from_addr
 
-接收地址参数，验证地址格式后，调用服务端 Reverse 类的 DecompileFunctionFromAddr 接口，根据地址反编译对应函数。
+Receive an address parameter, validate the address format, then call the DecompileFunctionFromAddr interface of the server-side Reverse class to decompile the corresponding function by address.
 
 ```python
 from IDAMoles import *
@@ -1195,7 +1195,7 @@ if __name__ == '__main__':
     print(info_page.decompile_from_addr("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1214,7 +1214,7 @@ if __name__ == '__main__':
 
 #### decompile_from_name
 
-接收函数名称参数，校验非空后，调用服务端 Reverse 类的 DecompileFunctionFromName 接口，根据名称反编译对应函数。
+Receive a function name parameter, validate it is not empty, then call the DecompileFunctionFromName interface of the server-side Reverse class to decompile the corresponding function by name.
 
 ```python
 from IDAMoles import *
@@ -1228,7 +1228,7 @@ if __name__ == '__main__':
     print(info_page.decompile_from_name("_WinMain@16"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1247,7 +1247,7 @@ if __name__ == '__main__':
 
 #### decompile_line_to_address
 
-接收地址和行号参数，验证地址格式并校验行号非空后，调用服务端 Reverse 类的 DecompileLineToAddress 接口，将反编译代码的行号映射到对应内存地址。
+Receive address and line number parameters, validate the address format and check that the line number is not empty, then call the DecompileLineToAddress interface of the server-side Reverse class to map the line number of decompiled code to the corresponding memory address.
 
 ```python
 from IDAMoles import *
@@ -1261,7 +1261,7 @@ if __name__ == '__main__':
     print(info_page.decompile_line_to_address("0x401000","8"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1279,7 +1279,7 @@ if __name__ == '__main__':
 
 #### decompile_address_to_line
 
-接收地址参数，验证地址格式后，调用服务端 Reverse 类的 DecompileAddressToLine 接口，将指定地址映射到反编译代码的行号。
+Receive an address parameter, validate the address format, then call the DecompileAddressToLine interface of the server-side Reverse class to map the specified address to the line number of decompiled code.
 
 ```python
 from IDAMoles import *
@@ -1293,7 +1293,7 @@ if __name__ == '__main__':
     print(info_page.decompile_address_to_line("0x401025"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1309,7 +1309,7 @@ if __name__ == '__main__':
 
 #### get_select_decompile
 
-调用服务端 Reverse 类的 GetSelectDecompile 接口，获取当前选中区域的反编译代码。
+Call the GetSelectDecompile interface of the server-side Reverse class to obtain the decompiled code for the currently selected region.
 
 ```python
 from IDAMoles import *
@@ -1323,7 +1323,7 @@ if __name__ == '__main__':
     print(info_page.get_select_decompile())
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1376,7 +1376,7 @@ if __name__ == '__main__':
 
 #### get_select_disassembly
 
-调用服务端 Reverse 类的 GetSelectDisassembly 接口，获取当前选中区域的反汇编指令。
+Call the GetSelectDisassembly interface of the server-side Reverse class to obtain the disassembled instructions for the currently selected region.
 
 ```python
 from IDAMoles import *
@@ -1390,7 +1390,7 @@ if __name__ == '__main__':
     print(info_page.get_select_disassembly())
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1443,7 +1443,7 @@ if __name__ == '__main__':
 
 #### get_select_hex
 
-调用服务端 Reverse 类的 GetSelectHex 接口，获取当前选中区域的十六进制数据。
+Call the GetSelectHex interface of the server-side Reverse class to obtain the hexadecimal data for the currently selected region.
 
 ```python
 from IDAMoles import *
@@ -1457,7 +1457,7 @@ if __name__ == '__main__':
     print(info_page.get_select_hex())
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1540,13 +1540,13 @@ if __name__ == '__main__':
 }
 ```
 
-### 内存操作
+### Memory Operations
 
-内存操作模块提供内存数据读取、结构体解析、字符串提取、内存搜索与交叉引用查询等能力，支持按字节/字/双字精准读取数据，并追踪代码与数据间的引用关系，实现对程序运行时状态的完整观测。
+The Memory Operations module provides capabilities such as memory data reading, structure parsing, string extraction, memory search, and cross-reference querying. It supports precise data reading by byte/word/dword and tracks reference relationships between code and data, enabling complete observation of program runtime state.
 
 #### get_entry_points
 
-调用服务端 Memory 类的 GetEntryPoints 接口，获取程序的所有入口点地址信息。
+Call the GetEntryPoints interface of the server-side Memory class to obtain all entry point address information for the program.
 
 ```python
 from IDAMoles import *
@@ -1560,7 +1560,7 @@ if __name__ == '__main__':
     print(info_page.get_entry_points())
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1584,7 +1584,7 @@ if __name__ == '__main__':
 
 #### get_defined_struct
 
-调用服务端 Memory 类的 GetDefinedStruct 接口，获取程序中已定义的所有结构体信息。
+Call the GetDefinedStruct interface of the server-side Memory class to obtain information about all defined structures in the program.
 
 ```python
 from IDAMoles import *
@@ -1598,7 +1598,7 @@ if __name__ == '__main__':
     print(info_page.get_defined_struct())
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1656,7 +1656,7 @@ if __name__ == '__main__':
 
 #### get_memory_byte
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 GetMemoryByte 接口，获取指定地址的 1 字节内存数据。
+Receive an address parameter, validate the address format, then call the GetMemoryByte interface of the server-side Memory class to obtain 1 byte of memory data at the specified address.
 
 ```python
 from IDAMoles import *
@@ -1670,7 +1670,7 @@ if __name__ == '__main__':
     print(info_page.get_memory_byte("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1687,7 +1687,7 @@ if __name__ == '__main__':
 
 #### get_memory_word
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 GetMemoryWord 接口，获取指定地址的 2 字节（Word）内存数据。
+Receive an address parameter, validate the address format, then call the GetMemoryWord interface of the server-side Memory class to obtain 2 bytes (Word) of memory data at the specified address.
 
 ```python
 from IDAMoles import *
@@ -1701,7 +1701,7 @@ if __name__ == '__main__':
     print(info_page.get_memory_word("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1730,7 +1730,7 @@ if __name__ == '__main__':
     print(info_page.get_memory_dword("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1747,7 +1747,7 @@ if __name__ == '__main__':
 
 #### get_memory_qword
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 GetMemoryQword 接口，获取指定地址的 8 字节（Qword）内存数据。
+Receive an address parameter, validate the address format, then call the GetMemoryQword interface of the server-side Memory class to obtain 8 bytes (Qword) of memory data at the specified address.
 
 ```python
 from IDAMoles import *
@@ -1761,7 +1761,7 @@ if __name__ == '__main__':
     print(info_page.get_memory_qword("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1778,7 +1778,7 @@ if __name__ == '__main__':
 
 #### get_memory_bytes
 
-接收地址和长度参数，验证地址格式并校验长度为正数后，调用服务端 Memory 类的 GetMemoryBytes 接口，获取指定地址开始的指定长度内存数据。
+Receive address and length parameters, validate the address format and check that the length is positive, then call the GetMemoryBytes interface of the server-side Memory class to obtain memory data of the specified length starting from the specified address.
 
 ```python
 from IDAMoles import *
@@ -1792,7 +1792,7 @@ if __name__ == '__main__':
     print(info_page.get_memory_bytes("0x401000","5"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1823,7 +1823,7 @@ if __name__ == '__main__':
 
 #### get_string_info
 
-调用服务端 Memory 类的 GetStringInfo 接口，获取程序中所有字符串相关信息。
+Call the GetStringInfo interface of the server-side Memory class to obtain all string-related information in the program.
 
 ```python
 from IDAMoles import *
@@ -1837,7 +1837,7 @@ if __name__ == '__main__':
     print(info_page.get_string_info())
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1877,7 +1877,7 @@ if __name__ == '__main__':
 
 #### get_memory_search
 
-接收起始地址、结束地址和搜索参数，验证地址格式并校验搜索参数非空后，调用服务端 Memory 类的 MemorySearch 接口，在指定地址范围内搜索指定内容。
+Receive start address, end address, and search pattern parameters, validate the address format and check that the search pattern is not empty, then call the MemorySearch interface of the server-side Memory class to search for the specified content within the specified address range.
 
 ```python
 from IDAMoles import *
@@ -1891,7 +1891,7 @@ if __name__ == '__main__':
     print(info_page.get_memory_search("0x401000","0x402000","688033"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1911,7 +1911,7 @@ if __name__ == '__main__':
 
 #### get_type_by_name
 
-接收类型名称参数，校验非空后，调用服务端 Memory 类的 GetTypeByName 接口，根据名称获取对应的类型定义信息。
+Receive a type name parameter, validate it is not empty, then call the GetTypeByName interface of the server-side Memory class to obtain the corresponding type definition information by name.
 
 ```python
 from IDAMoles import *
@@ -1925,7 +1925,7 @@ if __name__ == '__main__':
     print(info_page.get_type_by_name("_GUID"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -1942,7 +1942,7 @@ if __name__ == '__main__':
 
 #### xref_code_first_to
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefCodeFirstTo 接口，获取指向该地址的第一条代码交叉引用。
+Receive an address parameter, validate the address format, then call the XrefCodeFirstTo interface of the server-side Memory class to obtain the first code cross-reference pointing to this address.
 
 ```python
 from IDAMoles import *
@@ -1956,7 +1956,7 @@ if __name__ == '__main__':
     print(info_page.xref_code_first_to("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2029,7 +2029,7 @@ if __name__ == '__main__':
 
 #### xref_code_first_from
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefCodeFirstFrom 接口，获取从该地址出发的第一条代码交叉引用。
+Receive an address parameter, validate the address format, then call the XrefCodeFirstFrom interface of the server-side Memory class to obtain the first code cross-reference originating from this address.
 
 ```python
 from IDAMoles import *
@@ -2043,7 +2043,7 @@ if __name__ == '__main__':
     print(info_page.xref_code_first_from("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2118,7 +2118,7 @@ if __name__ == '__main__':
 
 #### xref_data_first_to
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefDataFirstTo 接口，获取指向该地址的第一条数据交叉引用。
+Receive an address parameter, validate the address format, then call the XrefDataFirstTo interface of the server-side Memory class to obtain the first data cross-reference pointing to this address.
 
 ```python
 from IDAMoles import *
@@ -2132,7 +2132,7 @@ if __name__ == '__main__':
     print(info_page.xref_data_first_to("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2157,7 +2157,7 @@ if __name__ == '__main__':
 
 #### xref_data_first_from
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefDataFirstFrom 接口，获取从该地址出发的第一条数据交叉引用。
+Receive an address parameter, validate the address format, then call the XrefDataFirstFrom interface of the server-side Memory class to obtain the first data cross-reference originating from this address.
 
 ```python
 from IDAMoles import *
@@ -2171,7 +2171,7 @@ if __name__ == '__main__':
     print(info_page.xref_data_first_from("0x401007"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2223,7 +2223,7 @@ if __name__ == '__main__':
 
 #### xref_code_to_array
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefCodeFromArray 接口，获取所有从该地址出发的代码交叉引用列表。
+Receive an address parameter, validate the address format, then call the XrefCodeToArray interface of the server-side Memory class to obtain a list of all code cross-references pointing to this address.
 
 ```python
 from IDAMoles import *
@@ -2237,7 +2237,7 @@ if __name__ == '__main__':
     print(info_page.xref_code_to_array("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2258,7 +2258,7 @@ if __name__ == '__main__':
 
 #### xref_code_from_array
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefCodeFromArray 接口，获取所有从该地址出发的代码交叉引用列表。
+Receive an address parameter, validate the address format, then call the XrefCodeFromArray interface of the server-side Memory class to obtain a list of all code cross-references originating from this address.
 
 ```python
 from IDAMoles import *
@@ -2272,7 +2272,7 @@ if __name__ == '__main__':
     print(info_page.xref_code_from_array("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2287,7 +2287,7 @@ if __name__ == '__main__':
 
 #### xref_data_to_array
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefDataToArray 接口，获取所有指向该地址的交叉引用列表。
+Receive an address parameter, validate the address format, then call the XrefDataToArray interface of the server-side Memory class to obtain a list of all data cross-references pointing to this address.
 
 ```python
 from IDAMoles import *
@@ -2301,7 +2301,7 @@ if __name__ == '__main__':
     print(info_page.xref_data_to_array("0x402080"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2322,7 +2322,7 @@ if __name__ == '__main__':
 
 #### xref_data_from_array
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefDataFromArray 接口，获取所有从该地址出发的数据交叉引用列表。
+Receive an address parameter, validate the address format, then call the XrefDataFromArray interface of the server-side Memory class to obtain a list of all data cross-references originating from this address.
 
 ```python
 from IDAMoles import *
@@ -2336,7 +2336,7 @@ if __name__ == '__main__':
     print(info_page.xref_data_from_array("0x402080"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2351,7 +2351,7 @@ if __name__ == '__main__':
 
 #### xref_get_list_array
 
-接收地址参数，验证地址格式后，调用服务端 Memory 类的 XrefGetListArray 接口，获取该地址相关的所有交叉引用列表。
+Receive an address parameter, validate the address format, then call the XrefGetListArray interface of the server-side Memory class to obtain all cross-reference lists related to this address.
 
 ```python
 from IDAMoles import *
@@ -2365,7 +2365,7 @@ if __name__ == '__main__':
     print(info_page.xref_get_list_array("0x402080"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2385,13 +2385,13 @@ if __name__ == '__main__':
 }
 ```
 
-### 通用辅助
+### General Utilities
 
-通用辅助模块提供注释编辑、符号重命名、变量修改、结构成员管理等便捷操作，用于优化 IDA 展示效果、提升分析效率，让逆向成果更易沉淀、共享与二次利用，是工程化分析必不可少的辅助能力。
+The General Utilities module provides convenient operations such as comment editing, symbol renaming, variable modification, and structure member management. These capabilities optimize IDA display effects, improve analysis efficiency, and make reverse engineering results easier to preserve, share, and reuse. They are essential auxiliary capabilities for engineering analysis.
 
 #### set_assembly_comment
 
-接收地址和注释参数，验证地址格式并校验注释非空后，调用服务端 Other 类的 SetAssemblyComment 接口，为指定地址的汇编指令添加注释。
+Receive address and comment parameters, validate the address format and check that the comment is not empty, then call the SetAssemblyComment interface of the server-side Other class to add a comment to the assembly instruction at the specified address.
 
 ```python
 from IDAMoles import *
@@ -2405,7 +2405,7 @@ if __name__ == '__main__':
     print(info_page.set_assembly_commnet("0x401000","new comm"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2423,7 +2423,7 @@ if __name__ == '__main__':
 
 #### set_function_comment
 
-接收地址和注释参数，验证地址格式并校验注释非空后，调用服务端 Other 类的 SetFunctionComment 接口，为指定地址的函数添加注释。
+Receive address and comment parameters, validate the address format and check that the comment is not empty, then call the SetFunctionComment interface of the server-side Other class to add a comment to the function at the specified address.
 
 ```python
 from IDAMoles import *
@@ -2437,7 +2437,7 @@ if __name__ == '__main__':
     print(info_page.set_function_comment("0x401000","new comm"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2455,7 +2455,7 @@ if __name__ == '__main__':
 
 #### get_function_name
 
-接收地址参数，验证地址格式后，调用服务端 Other 类的 GetFunctionName 接口，获取指定地址所属函数的名称。
+Receive an address parameter, validate the address format, then call the GetFunctionName interface of the server-side Other class to obtain the name of the function to which the specified address belongs.
 
 ```python
 from IDAMoles import *
@@ -2469,7 +2469,7 @@ if __name__ == '__main__':
     print(info_page.get_function_name("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2488,7 +2488,7 @@ if __name__ == '__main__':
 
 #### set_function_name
 
-接收地址和函数名称参数，验证地址格式并校验名称非空后，调用服务端 Other 类的 SetFunctionName 接口，修改指定地址所属函数的名称。
+Receive address and function name parameters, validate the address format and check that the name is not empty, then call the SetFunctionName interface of the server-side Other class to modify the name of the function to which the specified address belongs.
 
 ```python
 from IDAMoles import *
@@ -2502,7 +2502,7 @@ if __name__ == '__main__':
     print(info_page.set_function_name("0x401000","MyFunc"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2522,7 +2522,7 @@ if __name__ == '__main__':
 
 #### switch_pseudocode_to
 
-接收地址参数，验证地址格式后，调用服务端 Other 类的 SwitchPseudoCodeTo 接口，切换伪代码窗口到指定地址位置并反编译。
+Receive an address parameter, validate the address format, then call the SwitchPseudoCodeTo interface of the server-side Other class to switch the pseudocode window to the specified address and decompile.
 
 ```python
 from IDAMoles import *
@@ -2536,7 +2536,7 @@ if __name__ == '__main__':
     print(info_page.switch_pseudocode_to("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2551,7 +2551,7 @@ if __name__ == '__main__':
 
 #### get_function_var_name
 
-接收地址参数，验证地址格式后，调用服务端 Other 类的 GetFunctionVarName 接口，获取指定地址所属函数的变量名称。
+Receive an address parameter, validate the address format, then call the GetFunctionVarName interface of the server-side Other class to obtain the variable names of the function to which the specified address belongs.
 
 ```python
 from IDAMoles import *
@@ -2566,7 +2566,7 @@ if __name__ == '__main__':
     print(info_page.get_function_var_name("0x401000"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2647,7 +2647,7 @@ if __name__ == '__main__':
 
 #### set_function_var_name
 
-接收地址、UID 和变量名称参数，验证地址格式并校验 UID 和变量名称非空后，调用服务端 Other 类的 SetFunctionVarName 接口，修改指定地址函数中指定 UID 的变量名称。
+Receive address, UID, and variable name parameters, validate the address format and check that the UID and variable name are not empty, then call the SetFunctionVarName interface of the server-side Other class to modify the variable name with the specified UID in the function at the specified address.
 
 ```python
 from IDAMoles import *
@@ -2662,7 +2662,7 @@ if __name__ == '__main__':
     print(info_page.set_function_var_name("0x401000","4","new_var"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2679,7 +2679,7 @@ if __name__ == '__main__':
 
 #### get_struct_member_name
 
-接收结构体名称和偏移量参数，校验结构体名称非空且偏移量为非负整数后，调用服务端 Other 类的 GetStructMemberName 接口，获取指定结构体中指定偏移量的成员名称。
+Receive struct name and offset parameters, check that the struct name is not empty and the offset is a non-negative integer, then call the GetStructMemberName interface of the server-side Other class to obtain the member name at the specified offset in the specified struct.
 
 ```python
 from IDAMoles import *
@@ -2694,7 +2694,7 @@ if __name__ == '__main__':
     print(info_page.get_struct_member_name("_GUID", 1))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2729,7 +2729,7 @@ if __name__ == '__main__':
 
 #### set_struct_member_name
 
-接收结构体名称、偏移量和新成员名称参数，校验结构体名称非空、偏移量为非负整数且新名称非空后，调用服务端 Other 类的 SetStructMemberName 接口，修改指定结构体中指定偏移量的成员名称。
+Receive struct name, offset, and new member name parameters, check that the struct name is not empty, the offset is a non-negative integer, and the new name is not empty, then call the SetStructMemberName interface of the server-side Other class to modify the member name at the specified offset in the specified struct.
 
 ```python
 from IDAMoles import *
@@ -2743,7 +2743,7 @@ if __name__ == '__main__':
     print(info_page.set_struct_member_name("_GUID", 0,"new_data"))
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
@@ -2763,7 +2763,7 @@ if __name__ == '__main__':
 
 #### get_current_select
 
-调用服务端 Other 类的 GetCurrentSelect 接口，获取当前选中区域的相关信息。
+Call the GetCurrentSelect interface of the server-side Other class to obtain information about the currently selected region.
 
 ```python
 from IDAMoles import *
@@ -2777,7 +2777,7 @@ if __name__ == '__main__':
     print(info_page.get_current_select())
 ```
 
-输出JSON格式：
+Output JSON format:
 
 ```json
 {
