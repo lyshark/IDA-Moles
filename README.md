@@ -38,10 +38,6 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> config.set_ida_path("D://IDA Professional 9.1")
 The IDA path has been set to: d:\idapro9.1\plugins
 >>>
->>> config.install_moles()
-Download progress: 100.00%
-[*] Install Moles Success
->>>
 >>> config.open_ida_with_program("C://win32.exe",auto_mode=True,force_new=True)
 SUCCESS: IDA has been started and the program has been loaded:C://win32.exe
 ```
