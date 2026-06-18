@@ -1,0 +1,8 @@
+LICENSE
+README.md
+setup.py
+IDAMoles/__init__.py
+IDAMoles.egg-info/PKG-INFO
+IDAMoles.egg-info/SOURCES.txt
+IDAMoles.egg-info/dependency_links.txt
+IDAMoles.egg-info/top_level.txt
