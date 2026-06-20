@@ -46,7 +46,8 @@ Simply configure the IDA Pro path and install the plugin to complete the environ
 
 MCP Configuration Method
 
-https://live.csdn.net/v/516489
+IDA Moles + Cherry Studio User Manual: https://live.csdn.net/v/516489
+IDA Moles Selected Range Analysis Function: https://live.csdn.net/v/517395
 
 ## Interface Specification
 
