@@ -44,10 +44,13 @@ SUCCESS: IDA has been started and the program has been loaded:C://win32.exe
 
 Simply configure the IDA Pro path and install the plugin to complete the environment setup and load the target program for analysis.
 
-MCP Configuration Method
+**MCP Configuration Method**
 
-IDA Moles + Cherry Studio User Manual: https://live.csdn.net/v/516489
-IDA Moles Selected Range Analysis Function: https://live.csdn.net/v/517395
+IDA Moles + Cherry Studio User Manual
+https://live.csdn.net/v/516489
+
+IDA Moles Selected Range Analysis Function
+https://live.csdn.net/v/517395
 
 ## Interface Specification
 
