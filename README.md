@@ -44,6 +44,10 @@ SUCCESS: IDA has been started and the program has been loaded:C://win32.exe
 
 Simply configure the IDA Pro path and install the plugin to complete the environment setup and load the target program for analysis.
 
+MCP Configuration Method
+
+https://live.csdn.net/v/516489
+
 ## Interface Specification
 
 This component is developed based on the IDA 9.1 standard C++ SDK development toolkit. Despite lacking effective reference documentation and technical support, the author successfully implemented over 50 core features within one month by understanding IDA reverse analysis principles. These features are systematically categorized into six major modules based on their functional attributes:
