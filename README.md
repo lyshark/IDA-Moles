@@ -1,6 +1,21 @@
 # IDA-Moles Static Reverse Analysis Component
 
-<img src="https://github.com/user-attachments/assets/60f86fb4-04fb-45d7-88ab-f64e5e7516d0" alt="ladyida" width="12%">
+<br>
+<div align=center>
+	<img width="12%" height="10%" alt="logo" src="https://github.com/user-attachments/assets/60f86fb4-04fb-45d7-88ab-f64e5e7516d0" />
+</div>
+<br><br>
+<div align=center>
+
+[![Email Support](https://img.shields.io/badge/Contact-admin@lyshark.com-0099ff?logo=gmail)](mailto:admin@lyshark.com)
+[![Python 3.x](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)](https://github.com/lyshark/IDA-MOLES)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20IDA%20Pro%209.1-lightgrey?logo=windows)](https://github.com/lyshark/IDA-MOLES)
+[![License](https://img.shields.io/github/license/lyshark/IDA-MOLES)](https://github.com/lyshark/IDA-MOLES/blob/main/LICENSE)
+
+[![GitHub Stars](https://img.shields.io/github/stars/lyshark/IDA-MOLES?style=social)](https://github.com/lyshark/IDA-MOLES/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/lyshark/IDA-MOLES?style=social)](https://github.com/lyshark/IDA-MOLES/fork)
+
+</div>
 
 IDA Moles is a professional reverse analysis interface tool specifically designed for IDA Pro 9.1 and compatible with Python 3.8 and above. Centered around standardized call logic, this tool efficiently controls IDA Pro to perform various reverse operations including disassembly, decompilation, and memory analysis. It features comprehensive core capabilities such as efficient decompilation control, advanced debugging, memory analysis, function parsing, MCP server extension, and automated batch processing. Not only does it enable basic reverse operations like pseudocode acquisition, breakpoint setting, memory layout analysis, and function information parsing, but it also supports custom MCP server interface development to meet customized requirements. Furthermore, it allows for automation of reverse analysis workflows and batch processing of large sample sets through its programming interface, significantly enhancing the efficiency and flexibility of reverse analysis to meet the demands of complex reverse analysis scenarios.
 
