@@ -48,7 +48,10 @@ class Config:
     def __init__(self, address: str = "127.0.0.1", port: int = 8000):
         self.address = address
         self.port = port
+        self.ida_server_addr = f"http://{address}:{port}"
         self.ida_path = None
+        self.ida_http = "https://github.com/lyshark/IDA-Moles"
+        self.ida_engine = "IDAMoles.dll"
         self.timeout = 5
 
     def is_server_available(self, timeout: Optional[int] = None) -> bool:
@@ -114,7 +117,7 @@ class Config:
         self.ida_path = os.path.join(normalized_path, "plugins")
         print(f"The IDA path has been set to: {self.ida_path} (original input: {ida_path})")
         return
-    
+
     def open_ida_with_program(self, program_path: str, auto_mode: bool = False, force_new: bool = False) -> bool:
         if not self.ida_path:
             print("ERROR: Please call set_ida_path to set the IDA path first")
