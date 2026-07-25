@@ -48,10 +48,7 @@ class Config:
     def __init__(self, address: str = "127.0.0.1", port: int = 8000):
         self.address = address
         self.port = port
-        self.ida_server_addr = f"http://{address}:{port}"
         self.ida_path = None
-        self.ida_http = "http://moles.lyshark.com/"
-        self.ida_engine = "IDAMoles.dll"
         self.timeout = 5
 
     def is_server_available(self, timeout: Optional[int] = None) -> bool:
@@ -117,78 +114,7 @@ class Config:
         self.ida_path = os.path.join(normalized_path, "plugins")
         print(f"The IDA path has been set to: {self.ida_path} (original input: {ida_path})")
         return
-
-    def install_moles(self) -> str:
-        if self.ida_path is None:
-            print("WARNING: Please first execute set_ida_path to set the IDA directory")
-            return
-
-        try:
-            target_path = os.path.join(self.ida_path, self.ida_engine)
-            save_dir = os.path.dirname(target_path)
-
-            if not os.path.exists(save_dir):
-                os.makedirs(save_dir, exist_ok=True)
-                print(f"Created directory: {save_dir}")
-
-            with urllib.request.urlopen(self.ida_http + self.ida_engine, timeout=self.timeout) as response:
-                file_size = int(response.headers.get('Content-Length', 0))
-                downloaded_size = 0
-                chunk_size = 8192
-
-                with open(target_path, 'wb') as f:
-                    while True:
-                        chunk = response.read(chunk_size)
-                        if not chunk:
-                            break
-                        f.write(chunk)
-                        downloaded_size += len(chunk)
-                        if file_size > 0:
-                            progress = (downloaded_size / file_size) * 100
-                            print(f"\rDownload progress: {progress:.2f}%", end='')
-            print(f"\n[*] Install Moles Success")
-            return
-
-        except HTTPError as e:
-            print(f"ERROR: HTTP Error: Server returns status code {e.code}")
-            return
-        except URLError as e:
-            print(f"ERROR: URL error: unable to connect to server - {e.reason}")
-            return
-        except TimeoutError:
-            print("ERROR: Connection to server or data read timeout")
-            return
-        except IOError as e:
-            print(f"ERROR: File write error: unable to write to {target_path} - {e}")
-            return
-        except PermissionError:
-            print(f"ERROR: Permission denied: Unable to write to {target_path}. Please run as administrator.")
-            return
-        except Exception as e:
-            print(f"ERROR: Unknown error occurred: {e}")
-            return
-
-    def get_version(self) -> Optional[str]:
-        try:
-            req = urllib.request.Request(url=f"{self.ida_http}version.ini")
-            with urllib.request.urlopen(req, timeout=15) as response:
-                try:
-                    ini_content = response.read().decode("utf-8")
-                except UnicodeDecodeError:
-                    ini_content = response.read().decode("gbk")
-
-                config = configparser.ConfigParser()
-                config.read_file(StringIO(ini_content))
-
-                if not config.has_section("setting") or not config.has_option("setting", "version"):
-                    return None
-
-                return config.get("setting", "version").strip()
-
-        except (HTTPError, URLError, configparser.Error, TimeoutError, Exception) as e:
-            print(f"WARNING: Failed to get version: {str(e)}")
-            return None
-
+    
     def open_ida_with_program(self, program_path: str, auto_mode: bool = False, force_new: bool = False) -> bool:
         if not self.ida_path:
             print("ERROR: Please call set_ida_path to set the IDA path first")
