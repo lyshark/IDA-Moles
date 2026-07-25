@@ -28,8 +28,9 @@ IDA Moles is a professional reverse analysis interface tool specifically designe
 ```bash
 CMD> pip install idamoles
 CMD> pip show idamoles
+
 Name: IDAMoles
-Version: 1.0.7
+Version: 1.0.8
 Summary: 
 IDA Moles is a reverse analysis interface for IDA Pro 9.1. 
 It controls decompilation, debugging, and other operations via standardized calls, 
