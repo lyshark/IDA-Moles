@@ -1,7 +1,9 @@
+
 Project Development Environment：Visual Studio 2015
+
 third-party dependency library：IDA Professional 9.1 C++ SDK
 
-IDA Tools Resource Magnet Link：
+**IDA Tools Resource Magnet Link**
 
 ```
 magnet:?xt=urn:btih:f24cfadb8a66b343bf1ff4f0c1386a5f6991c818&dn=ida91
@@ -13,7 +15,7 @@ e0f41d622153aea72c44a03e9c5b4970c90c46d89e120fd5634da30394ebe4f4 ida-pro_91_x64m
 811219de8c6575123f9385872376abca7adee7bcec68d8ead1f1f7a6249c9fe8 ida-pro_91_x64win.exe
 ```
 
-Important Copyright Disclaimer：
+**Important Copyright Disclaimer**
 
 This resource can only be used for personal technical learning and academic research. It is strictly prohibited to apply it to commercial projects and various illegal and irregular scenarios. Users shall bear all legal responsibilities arising from illegal use on their own.
 
