@@ -1,7 +1,7 @@
+The tools and compilation environment required by the project are listed below, including the download link for the IDA 9.1 reverse analysis tool and other relevant information.
 
-Project Development Environment：Visual Studio 2015
-
-third-party dependency library：IDA Professional 9.1 C++ SDK
+ - Project Development Environment：Visual Studio 2015
+ - third-party dependency library：IDA Professional 9.1 C++ SDK
 
 **IDA Tools Resource Magnet Link**
 
